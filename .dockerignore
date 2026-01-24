@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+
+# CI/CD
+.github/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.iml
+
+# Build outputs
+**/bin/
+**/obj/
+**/dist/
+**/node_modules/
+
+# Test
+**/tests/
+**/*.Tests/
+
+# Environment
+.env
+.env.*
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

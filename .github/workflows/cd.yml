@@ -1,0 +1,78 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[deploy-backend]') || startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+    
+    - name: Build
+      run: dotnet build --configuration Release
+      working-directory: ./backend
+    
+    - name: Publish
+      run: dotnet publish -c Release -o ./publish
+      working-directory: ./backend/src/Portfolio.Api
+    
+    - name: Docker Build
+      run: docker build -t portfolio-api:latest -f Dockerfile.backend .
+
+    # --- Registry & Deploy: Aşağıdakilerden birini kullanın. GitHub Secrets: REGISTRY_URL, REGISTRY_USERNAME, REGISTRY_PASSWORD ---
+    # GitHub Container Registry (ghcr.io):
+    # - name: Login to GHCR
+    #   uses: docker/login-action@v3
+    #   with:
+    #     registry: ghcr.io
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Tag and Push
+    #   run: |
+    #     docker tag portfolio-api:latest ghcr.io/${{ github.repository_owner }}/portfolio-api:latest
+    #     docker push ghcr.io/${{ github.repository_owner }}/portfolio-api:latest
+    # Azure ACR: docker/login-action + az acr login; docker tag; docker push.
+    # AWS ECR: aws-actions/amazon-ecr-login; docker tag; docker push.
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[deploy-frontend]') || startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.x'
+    
+    - name: Install dependencies
+      run: npm ci
+      working-directory: ./frontend/portfolio
+    
+    - name: Build
+      run: npm run build -- --configuration production
+      working-directory: ./frontend/portfolio
+      env:
+        NODE_ENV: production
+
+    # --- Deploy: Aşağıdakilerden birini etkinleştirin. Secrets: VERCEL_TOKEN, NETLIFY_AUTH_TOKEN, vb. ---
+    # Vercel: vercel --prod (vercel CLI + VERCEL_ORG, VERCEL_PROJECT_ID, VERCEL_TOKEN)
+    # Netlify: netlify deploy --prod --dir=frontend/portfolio/dist/portfolio/browser (NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID)
+    # Azure Static Web Apps: azure/static-web-apps-deploy@v1 (AZURE_STATIC_WEB_APPS_API_TOKEN)
+    # - name: Deploy to Vercel
+    #   run: npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+    #   working-directory: ./frontend/portfolio

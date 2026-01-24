@@ -1,0 +1,51 @@
+<div class="p-4 sm:p-6">
+  <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-8 text-gray-900 dark:text-white">Dashboard</h2>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+
+  @if (error() && !loading()) {
+    <app-error-message [message]="error()!" [showRetry]="true" [retryCallback]="loadStats.bind(this)"></app-error-message>
+  }
+
+  @if (!loading() && !error()) {
+    @if (stats()) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div class="card p-4 sm:p-6">
+          <div class="text-2xl sm:text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+            {{ stats()!.totalProjects }}
+          </div>
+          <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Projects</div>
+          <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-1">
+            {{ stats()!.publishedProjects }} published
+          </div>
+        </div>
+
+        <div class="card p-4 sm:p-6">
+          <div class="text-2xl sm:text-3xl font-bold text-secondary-600 dark:text-secondary-400 mb-2">
+            {{ stats()!.totalBlogPosts }}
+          </div>
+          <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Blog Posts</div>
+          <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-1">
+            {{ stats()!.publishedBlogPosts }} published
+          </div>
+        </div>
+
+        <div class="card p-4 sm:p-6">
+          <div class="text-2xl sm:text-3xl font-bold text-accent-600 dark:text-accent-400 mb-2">
+            {{ stats()!.totalMessages }}
+          </div>
+          <div class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Total Messages</div>
+          <div class="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-1">
+            {{ stats()!.unreadMessages }} unread
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400">No statistics available</p>
+      </div>
+    }
+  }
+</div>

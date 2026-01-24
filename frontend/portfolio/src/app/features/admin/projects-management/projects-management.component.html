@@ -1,0 +1,455 @@
+<div class="p-4 sm:p-6">
+  <div
+    class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8"
+  >
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+      {{ "nav.projects" | translate }}
+    </h2>
+    <button
+      (click)="createNew()"
+      class="btn btn--primary w-full sm:w-auto text-sm sm:text-base"
+    >
+      {{ "common.create" | translate }}
+    </button>
+  </div>
+
+  @if (loading()) {
+  <app-loading-spinner></app-loading-spinner>
+  } @if (error() && !loading()) {
+  <app-error-message [message]="error()!"></app-error-message>
+  } @if (!loading() && !error()) { @if (projects().length === 0) {
+  <div class="text-center py-12">
+    <p class="text-gray-600 dark:text-gray-400 text-lg mb-4">
+      {{ "projects.noProjects" | translate }}
+    </p>
+    <button (click)="createNew()" class="btn btn--primary">
+      {{ "common.create" | translate }} {{ "nav.projects" | translate }}
+    </button>
+  </div>
+  } @else {
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+    @for (project of projects(); track project.id) {
+    <div class="card p-4 sm:p-6">
+      <h3
+        class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 break-words"
+      >
+        {{ getProjectTitle(project) }}
+      </h3>
+      <div class="mb-3 sm:mb-4">
+        <p
+          class="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-2 line-clamp-2"
+        >
+          {{ getProjectDescription(project) }}
+        </p>
+        <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+          {{ project.isPublished ? "Published" : "Draft" }}
+        </p>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-2">
+        <button
+          (click)="editProject(project)"
+          class="btn btn--outline btn--sm flex-1 text-sm"
+        >
+          {{ "common.edit" | translate }}
+        </button>
+        <button
+          (click)="deleteProject(project.id, $event)"
+          class="btn btn--outline btn--sm text-red-600 dark:text-red-400 flex-1 sm:flex-none text-sm"
+        >
+          {{ "common.delete" | translate }}
+        </button>
+      </div>
+    </div>
+    }
+  </div>
+  } } @if (showForm()) {
+  <div
+    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto"
+  >
+    <div
+      class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-none sm:rounded-lg max-w-3xl w-full h-full sm:h-auto sm:max-h-[90vh] sm:mx-4 sm:my-8 overflow-y-auto"
+    >
+      <div
+        class="flex justify-between items-center mb-4 sm:mb-6 sticky top-0 bg-white dark:bg-slate-800 pb-2 sm:pb-0 sm:static z-10"
+      >
+        <h3
+          class="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white pr-2"
+        >
+          {{
+            editingProject()
+              ? ("common.edit" | translate)
+              : ("common.create" | translate)
+          }}
+          {{ "nav.projects" | translate }}
+        </h3>
+        <button
+          (click)="onFormClose()"
+          class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
+          [disabled]="submitting()"
+        >
+          <svg
+            class="w-5 h-5 sm:w-6 sm:h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      @if (error()) {
+      <app-error-message [message]="error()!" class="mb-4"></app-error-message>
+      }
+
+      <form
+        [formGroup]="projectForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-3 sm:space-y-4"
+      >
+        <!-- Language Tabs -->
+        <div class="border-b border-gray-200 dark:border-gray-700 mb-3 sm:mb-4">
+          <nav class="flex gap-1 sm:gap-2">
+            <button
+              type="button"
+              (click)="setActiveLanguage('tr')"
+              class="px-3 sm:px-4 py-2 font-medium text-xs sm:text-sm transition-colors flex-1 sm:flex-none"
+              [class.text-primary-600]="activeLanguage() === 'tr'"
+              [class.border-b-2]="activeLanguage() === 'tr'"
+              [class.border-primary-600]="activeLanguage() === 'tr'"
+              [class.text-gray-500]="activeLanguage() !== 'tr'"
+              [class.dark:text-gray-400]="activeLanguage() !== 'tr'"
+            >
+              🇹🇷 Türkçe
+            </button>
+            <button
+              type="button"
+              (click)="setActiveLanguage('en')"
+              class="px-3 sm:px-4 py-2 font-medium text-xs sm:text-sm transition-colors flex-1 sm:flex-none"
+              [class.text-primary-600]="activeLanguage() === 'en'"
+              [class.border-b-2]="activeLanguage() === 'en'"
+              [class.border-primary-600]="activeLanguage() === 'en'"
+              [class.text-gray-500]="activeLanguage() !== 'en'"
+              [class.dark:text-gray-400]="activeLanguage() !== 'en'"
+            >
+              🇬🇧 English
+            </button>
+          </nav>
+        </div>
+
+        <!-- Translation Content (TR) -->
+        @if (activeLanguage() === 'tr') {
+        <div class="space-y-3 sm:space-y-4">
+          <!-- TR Title -->
+          <div class="form-group">
+            <label for="trTitle" class="form-label text-sm sm:text-base">
+              {{ "projects.titleLabel" | translate }} (Türkçe)
+              <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="trTitle"
+              type="text"
+              formControlName="trTitle"
+              class="form-input text-sm sm:text-base"
+              [class.form-input--error]="
+                projectForm.get('trTitle')?.touched &&
+                projectForm.get('trTitle')?.invalid
+              "
+              placeholder="{{ 'projects.titlePlaceholder' | translate }}"
+            />
+            @if (projectForm.get('trTitle')?.touched &&
+            projectForm.get('trTitle')?.errors) {
+            <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">
+              {{ getFieldError("trTitle") | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- TR Description -->
+          <div class="form-group">
+            <label for="trDescription" class="form-label text-sm sm:text-base">
+              {{ "projects.descriptionLabel" | translate }} (Türkçe)
+              <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="trDescription"
+              formControlName="trDescription"
+              rows="4"
+              class="form-input text-sm sm:text-base"
+              [class.form-input--error]="
+                projectForm.get('trDescription')?.touched &&
+                projectForm.get('trDescription')?.invalid
+              "
+              placeholder="{{ 'projects.descriptionPlaceholder' | translate }}"
+            ></textarea>
+            @if (projectForm.get('trDescription')?.touched &&
+            projectForm.get('trDescription')?.errors) {
+            <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">
+              {{ getFieldError("trDescription") | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- TR Technologies -->
+          <div class="form-group">
+            <label for="trTechnologies" class="form-label text-sm sm:text-base">
+              {{ "projects.technologiesLabel" | translate }} (Türkçe)
+            </label>
+            <input
+              id="trTechnologies"
+              type="text"
+              formControlName="trTechnologies"
+              class="form-input text-sm sm:text-base"
+              placeholder="{{ 'projects.technologiesPlaceholder' | translate }}"
+            />
+            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1">
+              {{ "projects.technologiesHint" | translate }}
+            </p>
+          </div>
+        </div>
+        }
+
+        <!-- Translation Content (EN) -->
+        @if (activeLanguage() === 'en') {
+        <div class="space-y-3 sm:space-y-4">
+          <!-- EN Title -->
+          <div class="form-group">
+            <label for="enTitle" class="form-label text-sm sm:text-base">
+              {{ "projects.titleLabel" | translate }} (English)
+              <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="enTitle"
+              type="text"
+              formControlName="enTitle"
+              class="form-input text-sm sm:text-base"
+              [class.form-input--error]="
+                projectForm.get('enTitle')?.touched &&
+                projectForm.get('enTitle')?.invalid
+              "
+              placeholder="{{ 'projects.titlePlaceholder' | translate }}"
+            />
+            @if (projectForm.get('enTitle')?.touched &&
+            projectForm.get('enTitle')?.errors) {
+            <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">
+              {{ getFieldError("enTitle") | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- EN Description -->
+          <div class="form-group">
+            <label for="enDescription" class="form-label text-sm sm:text-base">
+              {{ "projects.descriptionLabel" | translate }} (English)
+              <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="enDescription"
+              formControlName="enDescription"
+              rows="4"
+              class="form-input text-sm sm:text-base"
+              [class.form-input--error]="
+                projectForm.get('enDescription')?.touched &&
+                projectForm.get('enDescription')?.invalid
+              "
+              placeholder="{{ 'projects.descriptionPlaceholder' | translate }}"
+            ></textarea>
+            @if (projectForm.get('enDescription')?.touched &&
+            projectForm.get('enDescription')?.errors) {
+            <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">
+              {{ getFieldError("enDescription") | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- EN Technologies -->
+          <div class="form-group">
+            <label for="enTechnologies" class="form-label text-sm sm:text-base">
+              {{ "projects.technologiesLabel" | translate }} (English)
+            </label>
+            <input
+              id="enTechnologies"
+              type="text"
+              formControlName="enTechnologies"
+              class="form-input text-sm sm:text-base"
+              placeholder="{{ 'projects.technologiesPlaceholder' | translate }}"
+            />
+            <p class="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-1">
+              {{ "projects.technologiesHint" | translate }}
+            </p>
+          </div>
+        </div>
+        }
+
+        <!-- Common Fields -->
+        <div
+          class="border-t border-gray-200 dark:border-gray-700 pt-3 sm:pt-4 mt-4 sm:mt-6"
+        >
+          <h4
+            class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4"
+          >
+            Ortak Bilgiler
+          </h4>
+
+          <!-- GitHub URL -->
+          <div class="form-group">
+            <label for="githubUrl" class="form-label">
+              {{ "projects.githubUrl" | translate }}
+            </label>
+            <input
+              id="githubUrl"
+              type="url"
+              formControlName="githubUrl"
+              class="form-input"
+              placeholder="https://github.com/username/repo"
+            />
+            @if (projectForm.get('githubUrl')?.value &&
+            !validateUrl(projectForm.get('githubUrl')?.value)) {
+            <p class="text-red-600 dark:text-red-400 text-sm mt-1">
+              {{ "validation.invalidUrl" | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- Live URL -->
+          <div class="form-group">
+            <label for="liveUrl" class="form-label">
+              {{ "projects.liveUrl" | translate }}
+            </label>
+            <input
+              id="liveUrl"
+              type="url"
+              formControlName="liveUrl"
+              class="form-input"
+              placeholder="https://example.com"
+            />
+            @if (projectForm.get('liveUrl')?.value &&
+            !validateUrl(projectForm.get('liveUrl')?.value)) {
+            <p class="text-red-600 dark:text-red-400 text-sm mt-1">
+              {{ "validation.invalidUrl" | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- Image URL -->
+          <div class="form-group">
+            <label for="imageUrl" class="form-label">
+              {{ "projects.imageUrl" | translate }}
+            </label>
+            <input
+              id="imageUrl"
+              type="url"
+              formControlName="imageUrl"
+              class="form-input"
+              placeholder="https://example.com/image.jpg"
+            />
+            @if (projectForm.get('imageUrl')?.value &&
+            !validateUrl(projectForm.get('imageUrl')?.value)) {
+            <p class="text-red-600 dark:text-red-400 text-sm mt-1">
+              {{ "validation.invalidUrl" | translate }}
+            </p>
+            }
+          </div>
+
+          <!-- Display Order & Published -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div class="form-group">
+              <label for="displayOrder" class="form-label">
+                {{ "projects.displayOrder" | translate }}
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                id="displayOrder"
+                type="number"
+                formControlName="displayOrder"
+                class="form-input"
+                [class.form-input--error]="
+                  projectForm.get('displayOrder')?.touched &&
+                  projectForm.get('displayOrder')?.invalid
+                "
+                min="0"
+              />
+              @if (projectForm.get('displayOrder')?.touched &&
+              projectForm.get('displayOrder')?.errors) {
+              <p class="text-red-600 dark:text-red-400 text-sm mt-1">
+                {{ getFieldError("displayOrder") | translate }}
+              </p>
+              }
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                {{ "projects.status" | translate }}
+              </label>
+              <div class="flex items-center gap-3 mt-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    formControlName="isPublished"
+                    class="w-4 h-4 text-primary-600 rounded focus:ring-primary-500"
+                  />
+                  <span class="text-gray-700 dark:text-gray-300">
+                    {{ "projects.published" | translate }}
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div
+          class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-end pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700"
+        >
+          <button
+            type="button"
+            (click)="onFormClose()"
+            class="btn btn--outline w-full sm:w-auto text-sm sm:text-base order-2 sm:order-1"
+            [disabled]="submitting()"
+          >
+            {{ "common.cancel" | translate }}
+          </button>
+          <button
+            type="submit"
+            class="btn btn--primary w-full sm:w-auto text-sm sm:text-base order-1 sm:order-2"
+            [disabled]="submitting()"
+          >
+            @if (submitting()) {
+            <svg
+              class="w-4 h-4 animate-spin inline-block mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            {{ "common.saving" | translate }}... } @else {
+            {{
+              editingProject()
+                ? ("common.update" | translate)
+                : ("common.create" | translate)
+            }}
+            }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  }
+</div>

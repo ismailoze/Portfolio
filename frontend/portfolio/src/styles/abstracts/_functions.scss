@@ -1,0 +1,9 @@
+// Spacing function
+@function spacing($multiplier) {
+  @return $spacing-unit * $multiplier;
+}
+
+// Color opacity function
+@function color-opacity($color, $opacity) {
+  @return rgba($color, $opacity);
+}

@@ -1,0 +1,75 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    @if (loading()) {
+      <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    @if (error() && !loading()) {
+      <app-error-message [message]="error()!"></app-error-message>
+    }
+
+    @if (project() && !loading()) {
+      <div>
+        <a routerLink="/projects" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 mb-6">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          {{ 'projects.title' | translate }}
+        </a>
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+          {{ project()!.title }}
+        </h1>
+
+        @if (project()!.imageUrl) {
+          <img 
+            [src]="project()!.imageUrl" 
+            [alt]="project()!.title"
+            class="w-full h-auto rounded-lg mb-8">
+        }
+
+        <div class="prose prose-lg dark:prose-invert max-w-none mb-8">
+          <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line">
+            {{ project()!.description }}
+          </p>
+        </div>
+
+        @if (project()!.technologies) {
+          <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+              {{ 'projects.technologies' | translate }}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              @for (tech of getTechnologies(project()!.technologies); track tech) {
+                <span class="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-lg">
+                  {{ tech }}
+                </span>
+              }
+            </div>
+          </div>
+        }
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          @if (project()!.liveUrl) {
+            <a 
+              [href]="project()!.liveUrl" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--primary btn--lg">
+              {{ 'projects.liveDemo' | translate }}
+            </a>
+          }
+          @if (project()!.githubUrl) {
+            <a 
+              [href]="project()!.githubUrl" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--outline btn--lg">
+              {{ 'projects.viewCode' | translate }}
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

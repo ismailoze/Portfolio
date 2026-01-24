@@ -1,0 +1,121 @@
+<div class="p-4 sm:p-6">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+      {{ 'nav.experience' | translate }}
+    </h2>
+    <button (click)="openForm()" class="btn btn--primary w-full sm:w-auto text-sm sm:text-base">
+      {{ 'common.create' | translate }}
+    </button>
+  </div>
+
+  @if (loading()) {
+    <app-loading-spinner></app-loading-spinner>
+  }
+  @if (error() && !loading()) {
+    <app-error-message [message]="error()!"></app-error-message>
+  }
+  @if (!loading() && !error()) {
+    @if (experiences().length === 0) {
+      <div class="text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400 text-lg mb-4">{{ 'experience.noItems' | translate }}</p>
+        <button (click)="openForm()" class="btn btn--primary">{{ 'common.create' | translate }}</button>
+      </div>
+    } @else {
+      <div class="block sm:hidden space-y-3">
+        @for (exp of experiences(); track exp.id) {
+          <div class="card p-4">
+            <h3 class="font-semibold text-gray-900 dark:text-white">{{ exp.position }}</h3>
+            <p class="text-primary-600 dark:text-primary-400 text-sm">{{ exp.company }}</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              {{ formatDate(exp.startDate) }} - {{ exp.isCurrent ? ('experience.ongoing' | translate) : (exp.endDate ? formatDate(exp.endDate) : '') }}
+            </p>
+            <div class="flex gap-2 pt-3 mt-3 border-t border-gray-200 dark:border-slate-700">
+              <button (click)="openForm(exp)" class="btn btn--outline btn--sm flex-1">{{ 'common.edit' | translate }}</button>
+              <button (click)="deleteExperience(exp)" class="btn btn--outline btn--sm text-red-600 dark:text-red-400 flex-1">{{ 'common.delete' | translate }}</button>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="hidden sm:block overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-slate-700">
+              <th class="text-left p-3 sm:p-4 text-sm text-gray-700 dark:text-gray-300">{{ 'experience.position' | translate }}</th>
+              <th class="text-left p-3 sm:p-4 text-sm text-gray-700 dark:text-gray-300">{{ 'experience.company' | translate }}</th>
+              <th class="text-left p-3 sm:p-4 text-sm text-gray-700 dark:text-gray-300">{{ 'experience.startDate' | translate }}</th>
+              <th class="text-left p-3 sm:p-4 text-sm text-gray-700 dark:text-gray-300">{{ 'experience.endDate' | translate }}</th>
+              <th class="text-right p-3 sm:p-4 text-sm text-gray-700 dark:text-gray-300">{{ 'common.edit' | translate }} / {{ 'common.delete' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (exp of experiences(); track exp.id) {
+              <tr class="border-b border-gray-100 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-slate-800/50">
+                <td class="p-3 sm:p-4 font-medium text-gray-900 dark:text-white">{{ exp.position }}</td>
+                <td class="p-3 sm:p-4 text-gray-600 dark:text-gray-400">{{ exp.company }}</td>
+                <td class="p-3 sm:p-4 text-gray-600 dark:text-gray-400">{{ formatDate(exp.startDate) }}</td>
+                <td class="p-3 sm:p-4 text-gray-600 dark:text-gray-400">{{ exp.isCurrent ? ('experience.ongoing' | translate) : (exp.endDate ? formatDate(exp.endDate) : '-') }}</td>
+                <td class="p-3 sm:p-4 text-right">
+                  <button (click)="openForm(exp)" class="btn btn--outline btn--sm mr-2">{{ 'common.edit' | translate }}</button>
+                  <button (click)="deleteExperience(exp)" class="btn btn--outline btn--sm text-red-600 dark:text-red-400">{{ 'common.delete' | translate }}</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  }
+
+  @if (showForm()) {
+    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" (click)="closeForm()">
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+            {{ (editingExperience() ? 'common.edit' : 'common.create') | translate }} {{ 'nav.experience' | translate }}
+          </h3>
+          <button (click)="closeForm()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-200">×</button>
+        </div>
+        <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()" class="space-y-4">
+          <div class="form-group">
+            <label class="form-label">{{ 'experience.company' | translate }} *</label>
+            <input formControlName="company" class="form-input" type="text" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">{{ 'experience.position' | translate }} *</label>
+            <input formControlName="position" class="form-input" type="text" />
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="form-group">
+              <label class="form-label">{{ 'experience.startDate' | translate }} *</label>
+              <input formControlName="startDate" class="form-input" type="date" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">{{ 'experience.endDate' | translate }}</label>
+              <input formControlName="endDate" class="form-input" type="date" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">{{ 'experience.description' | translate }} *</label>
+            <textarea formControlName="description" class="form-input" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">{{ 'experience.technologies' | translate }}</label>
+            <input formControlName="technologies" class="form-input" type="text" placeholder="Angular, .NET, TypeScript" />
+          </div>
+          <div class="form-group flex items-center gap-2">
+            <input formControlName="isCurrent" type="checkbox" id="isCurrent" />
+            <label for="isCurrent">{{ 'experience.isCurrent' | translate }}</label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">{{ 'experience.displayOrder' | translate }}</label>
+            <input formControlName="displayOrder" class="form-input" type="number" min="0" />
+          </div>
+          <div class="flex gap-2 justify-end pt-4 border-t border-gray-200 dark:border-slate-700">
+            <button type="button" (click)="closeForm()" class="btn btn--outline">{{ 'common.cancel' | translate }}</button>
+            <button type="submit" [disabled]="experienceForm.invalid" class="btn btn--primary">{{ (editingExperience() ? 'common.update' : 'common.create') | translate }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+</div>

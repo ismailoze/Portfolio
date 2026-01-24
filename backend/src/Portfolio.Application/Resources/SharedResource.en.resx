@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Validation_EmailRequired" xml:space="preserve">
+    <value>Email is required.</value>
+  </data>
+  <data name="Validation_EmailInvalid" xml:space="preserve">
+    <value>Please enter a valid email address.</value>
+  </data>
+  <data name="Validation_PasswordRequired" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="Validation_PasswordMinLength" xml:space="preserve">
+    <value>Password must be at least 8 characters long.</value>
+  </data>
+  <data name="Validation_PasswordUppercase" xml:space="preserve">
+    <value>Password must contain at least one uppercase letter.</value>
+  </data>
+  <data name="Validation_PasswordLowercase" xml:space="preserve">
+    <value>Password must contain at least one lowercase letter.</value>
+  </data>
+  <data name="Validation_PasswordDigit" xml:space="preserve">
+    <value>Password must contain at least one digit.</value>
+  </data>
+  <data name="Validation_PasswordSpecialChar" xml:space="preserve">
+    <value>Password must contain at least one special character.</value>
+  </data>
+  <data name="Validation_FirstNameRequired" xml:space="preserve">
+    <value>First name is required.</value>
+  </data>
+  <data name="Validation_FirstNameMaxLength" xml:space="preserve">
+    <value>First name cannot exceed 50 characters.</value>
+  </data>
+  <data name="Validation_LastNameRequired" xml:space="preserve">
+    <value>Last name is required.</value>
+  </data>
+  <data name="Validation_LastNameMaxLength" xml:space="preserve">
+    <value>Last name cannot exceed 50 characters.</value>
+  </data>
+  <data name="Validation_NameRequired" xml:space="preserve">
+    <value>Name is required.</value>
+  </data>
+  <data name="Validation_NameMaxLength" xml:space="preserve">
+    <value>Name cannot exceed 100 characters.</value>
+  </data>
+  <data name="Validation_SubjectRequired" xml:space="preserve">
+    <value>Subject is required.</value>
+  </data>
+  <data name="Validation_SubjectMaxLength" xml:space="preserve">
+    <value>Subject cannot exceed 200 characters.</value>
+  </data>
+  <data name="Validation_MessageRequired" xml:space="preserve">
+    <value>Message is required.</value>
+  </data>
+  <data name="Validation_MessageMaxLength" xml:space="preserve">
+    <value>Message cannot exceed 2000 characters.</value>
+  </data>
+  <data name="Validation_ProjectTitleRequired" xml:space="preserve">
+    <value>Project title is required.</value>
+  </data>
+  <data name="Validation_ProjectTitleMaxLength" xml:space="preserve">
+    <value>Project title cannot exceed 200 characters.</value>
+  </data>
+  <data name="Validation_ProjectDescriptionRequired" xml:space="preserve">
+    <value>Project description is required.</value>
+  </data>
+  <data name="Validation_ProjectDescriptionMaxLength" xml:space="preserve">
+    <value>Project description cannot exceed 2000 characters.</value>
+  </data>
+  <data name="Validation_GitHubUrlInvalid" xml:space="preserve">
+    <value>Please enter a valid GitHub URL.</value>
+  </data>
+  <data name="Validation_LiveUrlInvalid" xml:space="preserve">
+    <value>Please enter a valid Live URL.</value>
+  </data>
+  <data name="Validation_BlogTitleRequired" xml:space="preserve">
+    <value>Blog title is required.</value>
+  </data>
+  <data name="Validation_BlogTitleMaxLength" xml:space="preserve">
+    <value>Blog title cannot exceed 200 characters.</value>
+  </data>
+  <data name="Validation_BlogContentRequired" xml:space="preserve">
+    <value>Blog content is required.</value>
+  </data>
+  <data name="Validation_BlogExcerptRequired" xml:space="preserve">
+    <value>Blog excerpt is required.</value>
+  </data>
+  <data name="Validation_BlogExcerptMaxLength" xml:space="preserve">
+    <value>Blog excerpt cannot exceed 500 characters.</value>
+  </data>
+  <data name="Validation_SlugRequired" xml:space="preserve">
+    <value>Slug is required.</value>
+  </data>
+  <data name="Validation_SlugInvalid" xml:space="preserve">
+    <value>Slug can only contain lowercase letters, numbers, and hyphens.</value>
+  </data>
+  <data name="Auth_InvalidCredentials" xml:space="preserve">
+    <value>Invalid email or password.</value>
+  </data>
+  <data name="Auth_EmailAlreadyExists" xml:space="preserve">
+    <value>This email address is already in use.</value>
+  </data>
+  <data name="Auth_UserCreationFailed" xml:space="preserve">
+    <value>User creation failed: {0}</value>
+  </data>
+  <data name="Auth_RefreshTokenNotImplemented" xml:space="preserve">
+    <value>Refresh token feature is not yet implemented.</value>
+  </data>
+  <data name="Auth_TurnstileVerificationFailed" xml:space="preserve">
+    <value>Security verification failed. Please try again.</value>
+  </data>
+  <data name="Contact_MessageNotFound" xml:space="preserve">
+    <value>Message not found.</value>
+  </data>
+  <data name="Contact_TurnstileVerificationFailed" xml:space="preserve">
+    <value>Security verification failed. Please try again.</value>
+  </data>
+  <data name="Error_General" xml:space="preserve">
+    <value>An error occurred. Please try again later.</value>
+  </data>
+  <data name="Error_Validation" xml:space="preserve">
+    <value>Validation error</value>
+  </data>
+  <data name="Project_NotFound" xml:space="preserve">
+    <value>Project not found.</value>
+  </data>
+  <data name="BlogPost_NotFound" xml:space="preserve">
+    <value>Blog post not found.</value>
+  </data>
+  <data name="Validation_ImageUrlInvalid" xml:space="preserve">
+    <value>Please enter a valid image URL.</value>
+  </data>
+  <data name="Validation_DisplayOrderInvalid" xml:space="preserve">
+    <value>Display order must be 0 or greater.</value>
+  </data>
+  <data name="Validation_TranslationsRequired" xml:space="preserve">
+    <value>At least one translation is required.</value>
+  </data>
+  <data name="Validation_LanguageCodeRequired" xml:space="preserve">
+    <value>Language code is required.</value>
+  </data>
+  <data name="Validation_LanguageCodeInvalid" xml:space="preserve">
+    <value>Please enter a valid language code (tr or en).</value>
+  </data>
+</root>

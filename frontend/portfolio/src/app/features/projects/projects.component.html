@@ -1,0 +1,95 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        {{ 'projects.title' | translate }}
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {{ 'projects.description' | translate }}
+      </p>
+    </div>
+
+    <!-- Search -->
+    <div class="max-w-md mx-auto mb-8" appScrollAnimation>
+      <input
+        type="text"
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+        [placeholder]="'common.search' | translate"
+        class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:border-primary-500 focus:outline-none transition-colors">
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+      <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @if (error() && !loading()) {
+      <app-error-message 
+        [message]="error()!" 
+        [showRetry]="true"
+        [retryCallback]="loadProjects.bind(this)">
+      </app-error-message>
+    }
+
+    <!-- Projects Grid -->
+    @if (!loading() && !error()) {
+      @if (filteredProjects.length === 0) {
+        <div class="text-center py-12">
+          <p class="text-gray-600 dark:text-gray-400 text-lg">
+            {{ 'projects.noProjects' | translate }}
+          </p>
+        </div>
+      } @else {
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          @for (project of filteredProjects; track project.id) {
+            <div class="project-card hover-lift" appScrollAnimation>
+              @if (project.imageUrl) {
+                <img 
+                  [src]="project.imageUrl" 
+                  [alt]="getProjectTitle(project)"
+                  appLazyImage
+                  class="project-card__image">
+              }
+              <div class="project-card__header">
+                <h3 class="project-card__title">{{ getProjectTitle(project) }}</h3>
+              </div>
+              <div class="project-card__body">
+                <p class="mb-4">{{ getProjectDescription(project) }}</p>
+                @if (getProjectTechnologies(project)) {
+                  <div class="project-card__tags">
+                    @for (tech of getTechnologies(getProjectTechnologies(project)); track tech) {
+                      <span class="project-card__tag">{{ tech }}</span>
+                    }
+                  </div>
+                }
+              </div>
+              <div class="project-card__footer flex gap-2">
+                @if (project.liveUrl) {
+                  <a 
+                    [href]="project.liveUrl" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn--primary btn--sm flex-1">
+                    {{ 'projects.liveDemo' | translate }}
+                  </a>
+                }
+                @if (project.githubUrl) {
+                  <a 
+                    [href]="project.githubUrl" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn--outline btn--sm flex-1">
+                    {{ 'projects.viewCode' | translate }}
+                  </a>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+    }
+  </div>
+</div>

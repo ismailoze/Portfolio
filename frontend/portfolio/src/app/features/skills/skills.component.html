@@ -1,0 +1,93 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        {{ "nav.skills" | translate }}
+      </h1>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8" appScrollAnimation>
+      <button
+        (click)="selectCategory(null)"
+        [class.bg-primary-600]="selectedCategory() === null"
+        [class.text-white]="selectedCategory() === null"
+        [class.text-gray-700]="selectedCategory() !== null"
+        [class.dark:text-gray-300]="selectedCategory() !== null"
+        class="px-4 py-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 hover:border-primary-500 transition-colors">
+        {{ "common.all" | translate }}
+      </button>
+      @for (category of categories(); track category) {
+      <button
+        (click)="selectCategory(category)"
+        [class.bg-primary-600]="selectedCategory() === category"
+        [class.text-white]="selectedCategory() === category"
+        [class.text-gray-700]="selectedCategory() !== category"
+        [class.dark:text-gray-300]="selectedCategory() !== category"
+        class="px-4 py-2 rounded-lg border-2 border-gray-200 dark:border-slate-700 hover:border-primary-500 transition-colors">
+        {{ category }}
+      </button>
+      }
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+    <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @if (error() && !loading()) {
+    <app-error-message
+      [message]="error()!"
+      [showRetry]="true"
+      [retryCallback]="loadSkills.bind(this)">
+    </app-error-message>
+    }
+
+    <!-- Skills Grid -->
+    @if (!loading() && !error()) {
+    <div class="space-y-12">
+      @for (category of getCategoryKeys(); track category) {
+      <div appScrollAnimation>
+        <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+          {{ category }}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          @for (skill of skillsByCategory()[category]; track skill.id) {
+          <div class="card hover-lift">
+            <!-- Skill Header: Name ve Icon -->
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white flex-1 pr-2">
+                {{ skill.name }}
+              </h3>
+              <div class="flex-shrink-0">
+                <app-skill-icon 
+                  [iconName]="skill.icon" 
+                  [size]="32"
+                  class="flex-shrink-0">
+                </app-skill-icon>
+              </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5 mb-2">
+              <div
+                class="bg-primary-600 dark:bg-primary-400 h-2.5 rounded-full transition-all duration-1000"
+                [style.width.%]="skill.level">
+              </div>
+            </div>
+            
+            <!-- Level Text -->
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Level: {{ getLevelOutOfTen(skill.level) }}/10
+            </p>
+          </div>
+          }
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>

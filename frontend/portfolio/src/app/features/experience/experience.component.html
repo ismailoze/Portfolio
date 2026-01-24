@@ -1,0 +1,71 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        {{ 'nav.experience' | translate }}
+      </h1>
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+      <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @if (error() && !loading()) {
+      <app-error-message 
+        [message]="error()!" 
+        [showRetry]="true"
+        [retryCallback]="loadExperiences.bind(this)">
+      </app-error-message>
+    }
+
+    <!-- Timeline -->
+    @if (!loading() && !error()) {
+      <div class="relative">
+        <!-- Timeline Line -->
+        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-slate-700 transform md:-translate-x-1/2"></div>
+
+        <div class="space-y-8">
+          @for (exp of experiences(); track exp.id; let i = $index) {
+            <div class="relative flex items-start" appScrollAnimation>
+              <!-- Timeline Dot -->
+              <div class="absolute left-6 md:left-1/2 w-4 h-4 bg-primary-600 dark:bg-primary-400 rounded-full transform md:-translate-x-1/2 z-10"></div>
+
+              <!-- Content -->
+              <div class="ml-16 md:ml-0 md:w-1/2" [class.md:ml-auto]="i % 2 === 1">
+                <div class="card">
+                  <div class="card__header">
+                    <h3 class="card__title">{{ exp.position }}</h3>
+                    <p class="text-primary-600 dark:text-primary-400 font-semibold">{{ exp.company }}</p>
+                  </div>
+                  <div class="card__body">
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                      {{ formatDate(exp.startDate) }} - 
+                      @if (exp.isCurrent) {
+                        <span class="text-primary-600 dark:text-primary-400">Devam Ediyor</span>
+                      } @else if (exp.endDate) {
+                        {{ formatDate(exp.endDate) }}
+                      }
+                    </p>
+                    <p class="mb-4">{{ exp.description }}</p>
+                    @if (exp.technologies) {
+                      <div class="flex flex-wrap gap-2">
+                        @for (tech of getTechnologies(exp.technologies); track tech) {
+                          <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm">
+                            {{ tech }}
+                          </span>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

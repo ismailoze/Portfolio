@@ -1,0 +1,41 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    @if (loading()) {
+      <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    @if (error() && !loading()) {
+      <app-error-message [message]="error()!"></app-error-message>
+    }
+
+    @if (post() && !loading()) {
+      <div>
+        <a routerLink="/blog" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 mb-6">
+          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          {{ 'blog.title' | translate }}
+        </a>
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+          {{ getPostTitle(post()!) }}
+        </h1>
+
+        @if (post()!.publishedAt) {
+          <p class="text-gray-600 dark:text-gray-400 mb-8">
+            {{ 'blog.publishedAt' | translate: { date: formatDate(post()!.publishedAt) } }}
+          </p>
+        }
+
+        @if (post()!.featuredImageUrl) {
+          <img 
+            [src]="post()!.featuredImageUrl" 
+            [alt]="getPostTitle(post()!)"
+            class="w-full h-auto rounded-lg mb-8">
+        }
+
+        <div class="prose prose-lg dark:prose-invert max-w-none" [innerHTML]="htmlContent()"></div>
+      </div>
+    }
+  </div>
+</div>

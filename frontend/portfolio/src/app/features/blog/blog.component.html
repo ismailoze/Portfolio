@@ -1,0 +1,96 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1
+        class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white"
+      >
+        {{ "blog.title" | translate }}
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        {{ "blog.description" | translate }}
+      </p>
+    </div>
+
+    <!-- Search -->
+    <div class="max-w-md mx-auto mb-8" appScrollAnimation>
+      <input
+        type="text"
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+        [placeholder]="'common.search' | translate"
+        class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white focus:border-primary-500 focus:outline-none transition-colors"
+      />
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+    <app-loading-spinner
+      [message]="'common.loading' | translate"
+    ></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @if (error() && !loading()) {
+    <app-error-message
+      [message]="error()!"
+      [showRetry]="true"
+      [retryCallback]="loadPosts.bind(this)"
+    >
+    </app-error-message>
+    }
+
+    <!-- Blog Posts -->
+    @if (!loading() && !error()) { @if (filteredPosts.length === 0) {
+    <div class="text-center py-12">
+      <p class="text-gray-600 dark:text-gray-400 text-lg">
+        {{ "blog.noPosts" | translate }}
+      </p>
+    </div>
+    } @else {
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (post of filteredPosts; track post.id) {
+      <article class="card hover-lift" appScrollAnimation>
+        @if (post.featuredImageUrl) {
+        <img
+          [src]="post.featuredImageUrl"
+          [alt]="getPostTitle(post)"
+          appLazyImage
+          class="w-full h-48 object-cover rounded-lg mb-4"
+        />
+        }
+        <div class="card__header">
+          <h3 class="card__title">
+            <a
+              [routerLink]="['/blog', getPostSlug(post)]"
+              class="hover:text-primary-600 dark:hover:text-primary-400"
+            >
+              {{ getPostTitle(post) }}
+            </a>
+          </h3>
+        </div>
+        <div class="card__body">
+          <p class="mb-4">{{ getPostExcerpt(post) }}</p>
+          @if (post.publishedAt) {
+          <p class="text-sm text-gray-500 dark:text-gray-400">
+            {{
+              "blog.publishedAt"
+                | translate : { date: formatDate(post.publishedAt) }
+            }}
+          </p>
+          }
+        </div>
+        <div class="card__footer">
+          <a
+            [routerLink]="['/blog', getPostSlug(post)]"
+            class="btn btn--primary btn--sm"
+          >
+            {{ "blog.readMore" | translate }}
+          </a>
+        </div>
+      </article>
+      }
+    </div>
+    } }
+  </div>
+</div>

@@ -1,0 +1,259 @@
+2026-01-13 20:23:02.388 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHK:00000001
+2026-01-13 20:23:02.561 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHL:00000001
+2026-01-13 20:23:02.722 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHM:00000001
+2026-01-13 20:23:03.018 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHN:00000001
+2026-01-13 20:23:03.017 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 295ms, CorrelationId: 0HNIIP1AS5QHM:00000001
+2026-01-13 20:23:03.219 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 200ms, CorrelationId: 0HNIIP1AS5QHN:00000001
+2026-01-13 20:23:03.281 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 720ms, CorrelationId: 0HNIIP1AS5QHL:00000001
+2026-01-13 20:23:03.281 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 901ms, CorrelationId: 0HNIIP1AS5QHK:00000001
+2026-01-13 20:23:03.287 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHO:00000001
+2026-01-13 20:23:03.288 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHP:00000001
+2026-01-13 20:23:03.398 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 111ms, CorrelationId: 0HNIIP1AS5QHO:00000001
+2026-01-13 20:23:03.399 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 111ms, CorrelationId: 0HNIIP1AS5QHP:00000001
+2026-01-13 20:26:16.897 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000001
+2026-01-13 20:26:17.012 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 115ms, CorrelationId: 0HNIIP1AS5QHQ:00000001
+2026-01-13 20:26:17.017 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000002
+2026-01-13 20:26:17.238 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 220ms, CorrelationId: 0HNIIP1AS5QHQ:00000002
+2026-01-13 20:27:57.433 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000003
+2026-01-13 20:27:58.061 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 628ms, CorrelationId: 0HNIIP1AS5QHQ:00000003
+2026-01-13 20:27:58.064 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000004
+2026-01-13 20:27:58.178 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 114ms, CorrelationId: 0HNIIP1AS5QHQ:00000004
+2026-01-13 20:27:59.998 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000005
+2026-01-13 20:28:00.113 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 114ms, CorrelationId: 0HNIIP1AS5QHQ:00000005
+2026-01-13 20:28:00.116 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIP1AS5QHQ:00000006
+2026-01-13 20:28:00.231 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 114ms, CorrelationId: 0HNIIP1AS5QHQ:00000006
+2026-01-13 21:02:57.983 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KH:00000001
+2026-01-13 21:02:57.983 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KG:00000001
+2026-01-13 21:02:58.445 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 467ms, CorrelationId: 0HNIIPNTR39KG:00000001
+2026-01-13 21:02:58.449 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KI:00000001
+2026-01-13 21:02:58.609 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 632ms, CorrelationId: 0HNIIPNTR39KH:00000001
+2026-01-13 21:02:58.613 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KH:00000002
+2026-01-13 21:02:58.616 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 167ms, CorrelationId: 0HNIIPNTR39KI:00000001
+2026-01-13 21:02:58.721 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 107ms, CorrelationId: 0HNIIPNTR39KH:00000002
+2026-01-13 21:02:59.492 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KJ:00000001
+2026-01-13 21:02:59.602 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIPNTR39KJ:00000001
+2026-01-13 21:02:59.607 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KK:00000001
+2026-01-13 21:02:59.710 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 102ms, CorrelationId: 0HNIIPNTR39KK:00000001
+2026-01-13 21:04:29.585 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KL:00000001
+2026-01-13 21:04:29.696 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIPNTR39KL:00000001
+2026-01-13 21:04:29.698 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPNTR39KL:00000002
+2026-01-13 21:04:29.806 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 108ms, CorrelationId: 0HNIIPNTR39KL:00000002
+2026-01-13 21:09:04.573 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H22:00000001
+2026-01-13 21:09:04.573 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H21:00000001
+2026-01-13 21:09:04.877 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H23:00000001
+2026-01-13 21:09:05.051 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 488ms, CorrelationId: 0HNIIPRB38H22:00000001
+2026-01-13 21:09:05.054 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H24:00000001
+2026-01-13 21:09:05.165 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIPRB38H24:00000001
+2026-01-13 21:09:05.225 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 663ms, CorrelationId: 0HNIIPRB38H21:00000001
+2026-01-13 21:09:05.231 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H25:00000001
+2026-01-13 21:09:05.335 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 104ms, CorrelationId: 0HNIIPRB38H25:00000001
+2026-01-13 21:09:05.385 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 508ms, CorrelationId: 0HNIIPRB38H23:00000001
+2026-01-13 21:09:05.391 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H26:00000001
+2026-01-13 21:09:05.500 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 108ms, CorrelationId: 0HNIIPRB38H26:00000001
+2026-01-13 21:10:35.479 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H27:00000001
+2026-01-13 21:10:35.858 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 378ms, CorrelationId: 0HNIIPRB38H27:00000001
+2026-01-13 21:17:21.884 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000001
+2026-01-13 21:17:21.886 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000001
+2026-01-13 21:17:22.960 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 1073ms, CorrelationId: 0HNIIPRB38H29:00000001
+2026-01-13 21:17:23.034 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 1150ms, CorrelationId: 0HNIIPRB38H28:00000001
+2026-01-13 21:18:48.511 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000002
+2026-01-13 21:18:48.542 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000002
+2026-01-13 21:18:48.603 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 60ms, CorrelationId: 0HNIIPRB38H29:00000002
+2026-01-13 21:18:48.644 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 132ms, CorrelationId: 0HNIIPRB38H28:00000002
+2026-01-13 21:18:50.243 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000003
+2026-01-13 21:18:50.246 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000003
+2026-01-13 21:18:50.341 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 95ms, CorrelationId: 0HNIIPRB38H29:00000003
+2026-01-13 21:18:50.354 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIPRB38H28:00000003
+2026-01-13 21:19:09.953 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000004
+2026-01-13 21:19:09.954 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000004
+2026-01-13 21:19:10.062 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 109ms, CorrelationId: 0HNIIPRB38H28:00000004
+2026-01-13 21:19:10.062 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 107ms, CorrelationId: 0HNIIPRB38H29:00000004
+2026-01-13 21:19:11.335 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000005
+2026-01-13 21:19:11.336 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000005
+2026-01-13 21:19:11.444 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 108ms, CorrelationId: 0HNIIPRB38H29:00000005
+2026-01-13 21:19:11.444 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 109ms, CorrelationId: 0HNIIPRB38H28:00000005
+2026-01-13 21:19:25.714 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIPRB38H28:00000006
+2026-01-13 21:19:25.716 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIPRB38H29:00000006
+2026-01-13 21:19:25.766 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 49ms, CorrelationId: 0HNIIPRB38H29:00000006
+2026-01-13 21:19:25.821 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 106ms, CorrelationId: 0HNIIPRB38H28:00000006
+2026-01-13 22:02:03.954 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N73:00000001
+2026-01-13 22:02:03.954 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N74:00000001
+2026-01-13 22:02:03.954 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N75:00000001
+2026-01-13 22:02:04.417 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 469ms, CorrelationId: 0HNIIQOUK1N74:00000001
+2026-01-13 22:02:04.424 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N76:00000001
+2026-01-13 22:02:04.581 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 634ms, CorrelationId: 0HNIIQOUK1N75:00000001
+2026-01-13 22:02:04.588 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N77:00000001
+2026-01-13 22:02:04.591 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 643ms, CorrelationId: 0HNIIQOUK1N73:00000001
+2026-01-13 22:02:04.594 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 169ms, CorrelationId: 0HNIIQOUK1N76:00000001
+2026-01-13 22:02:04.597 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N78:00000001
+2026-01-13 22:02:04.700 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 111ms, CorrelationId: 0HNIIQOUK1N77:00000001
+2026-01-13 22:02:04.707 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIQOUK1N78:00000001
+2026-01-13 22:03:28.939 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N78:00000002
+2026-01-13 22:03:29.026 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N79:00000001
+2026-01-13 22:03:29.132 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 105ms, CorrelationId: 0HNIIQOUK1N79:00000001
+2026-01-13 22:03:29.136 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N79:00000002
+2026-01-13 22:03:29.139 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 200ms, CorrelationId: 0HNIIQOUK1N78:00000002
+2026-01-13 22:03:29.143 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N73:00000002
+2026-01-13 22:03:29.239 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 103ms, CorrelationId: 0HNIIQOUK1N79:00000002
+2026-01-13 22:03:29.258 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 115ms, CorrelationId: 0HNIIQOUK1N73:00000002
+2026-01-13 22:03:29.955 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N77:00000002
+2026-01-13 22:03:30.069 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 113ms, CorrelationId: 0HNIIQOUK1N77:00000002
+2026-01-13 22:03:30.074 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N75:00000002
+2026-01-13 22:03:30.184 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIQOUK1N75:00000002
+2026-01-13 22:08:19.411 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N73:00000003
+2026-01-13 22:08:19.441 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N75:00000003
+2026-01-13 22:08:19.489 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N7A:00000001
+2026-01-13 22:08:20.075 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 634ms, CorrelationId: 0HNIIQOUK1N75:00000003
+2026-01-13 22:08:20.079 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N77:00000003
+2026-01-13 22:08:20.083 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 671ms, CorrelationId: 0HNIIQOUK1N73:00000003
+2026-01-13 22:08:20.084 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N78:00000003
+2026-01-13 22:08:20.114 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 625ms, CorrelationId: 0HNIIQOUK1N7A:00000001
+2026-01-13 22:08:20.117 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N7A:00000002
+2026-01-13 22:08:20.182 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 103ms, CorrelationId: 0HNIIQOUK1N77:00000003
+2026-01-13 22:08:20.187 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 102ms, CorrelationId: 0HNIIQOUK1N78:00000003
+2026-01-13 22:08:20.234 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 116ms, CorrelationId: 0HNIIQOUK1N7A:00000002
+2026-01-13 22:08:27.914 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIQOUK1N7B:00000001
+2026-01-13 22:08:28.166 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 252ms, CorrelationId: 0HNIIQOUK1N7B:00000001
+2026-01-13 22:15:21.334 +03:00 [INF] HTTP POST /api/auth/login başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000002
+2026-01-13 22:15:22.965 +03:00 [INF] HTTP POST /api/auth/login tamamlandı. StatusCode: 200, Süre: 1631ms, CorrelationId: 0HNIIQOUK1N7C:00000002
+2026-01-13 22:15:23.022 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000004
+2026-01-13 22:15:23.714 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 691ms, CorrelationId: 0HNIIQOUK1N7C:00000004
+2026-01-13 22:15:28.237 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000006
+2026-01-13 22:15:28.390 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 153ms, CorrelationId: 0HNIIQOUK1N7C:00000006
+2026-01-13 22:15:32.717 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000008
+2026-01-13 22:15:32.843 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 126ms, CorrelationId: 0HNIIQOUK1N7C:00000008
+2026-01-13 22:15:35.919 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000000A
+2026-01-13 22:15:36.005 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 85ms, CorrelationId: 0HNIIQOUK1N7C:0000000A
+2026-01-13 22:15:37.306 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000000C
+2026-01-13 22:15:37.407 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 101ms, CorrelationId: 0HNIIQOUK1N7C:0000000C
+2026-01-13 22:16:44.027 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000000E
+2026-01-13 22:16:44.079 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 51ms, CorrelationId: 0HNIIQOUK1N7C:0000000E
+2026-01-13 22:16:45.679 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000010
+2026-01-13 22:16:45.732 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 52ms, CorrelationId: 0HNIIQOUK1N7C:00000010
+2026-01-13 22:16:49.535 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000012
+2026-01-13 22:16:49.990 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 454ms, CorrelationId: 0HNIIQOUK1N7C:00000012
+2026-01-13 22:16:54.081 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000014
+2026-01-13 22:16:54.187 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 105ms, CorrelationId: 0HNIIQOUK1N7C:00000014
+2026-01-13 22:16:54.190 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000015
+2026-01-13 22:16:54.293 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 103ms, CorrelationId: 0HNIIQOUK1N7C:00000015
+2026-01-13 22:16:59.078 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000017
+2026-01-13 22:16:59.536 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 458ms, CorrelationId: 0HNIIQOUK1N7C:00000017
+2026-01-13 22:17:01.528 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000019
+2026-01-13 22:17:01.582 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 53ms, CorrelationId: 0HNIIQOUK1N7C:00000019
+2026-01-13 22:17:08.390 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000001B
+2026-01-13 22:17:08.445 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 55ms, CorrelationId: 0HNIIQOUK1N7C:0000001B
+2026-01-13 22:17:13.099 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000001D
+2026-01-13 22:17:13.154 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 55ms, CorrelationId: 0HNIIQOUK1N7C:0000001D
+2026-01-13 22:22:03.782 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000001F
+2026-01-13 22:22:04.300 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 517ms, CorrelationId: 0HNIIQOUK1N7C:0000001F
+2026-01-13 22:22:15.065 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000021
+2026-01-13 22:22:15.124 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 58ms, CorrelationId: 0HNIIQOUK1N7C:00000021
+2026-01-13 22:23:32.956 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000023
+2026-01-13 22:23:33.013 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 56ms, CorrelationId: 0HNIIQOUK1N7C:00000023
+2026-01-13 22:23:41.525 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000025
+2026-01-13 22:23:41.582 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 57ms, CorrelationId: 0HNIIQOUK1N7C:00000025
+2026-01-13 22:24:01.383 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000027
+2026-01-13 22:24:01.443 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 60ms, CorrelationId: 0HNIIQOUK1N7C:00000027
+2026-01-13 22:24:10.399 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIQOUK1N7C:00000029
+2026-01-13 22:24:10.909 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 509ms, CorrelationId: 0HNIIQOUK1N7C:00000029
+2026-01-13 22:24:15.303 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIQOUK1N7C:0000002B
+2026-01-13 22:24:15.361 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 58ms, CorrelationId: 0HNIIQOUK1N7C:0000002B
+2026-01-13 22:29:43.169 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4R:00000001
+2026-01-13 22:29:43.172 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4Q:00000002
+2026-01-13 22:29:43.445 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4S:00000001
+2026-01-13 22:29:43.639 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 466ms, CorrelationId: 0HNIIR8D2PK4Q:00000002
+2026-01-13 22:29:43.642 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4P:00000002
+2026-01-13 22:29:43.750 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 108ms, CorrelationId: 0HNIIR8D2PK4P:00000002
+2026-01-13 22:29:43.841 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 691ms, CorrelationId: 0HNIIR8D2PK4R:00000001
+2026-01-13 22:29:43.847 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4T:00000001
+2026-01-13 22:29:43.930 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 485ms, CorrelationId: 0HNIIR8D2PK4S:00000001
+2026-01-13 22:29:43.934 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000001
+2026-01-13 22:29:43.957 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 110ms, CorrelationId: 0HNIIR8D2PK4T:00000001
+2026-01-13 22:29:44.132 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 197ms, CorrelationId: 0HNIIR8D2PK4U:00000001
+2026-01-13 22:30:21.604 +03:00 [INF] HTTP POST /api/auth/login başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000003
+2026-01-13 22:30:22.042 +03:00 [INF] HTTP POST /api/auth/login tamamlandı. StatusCode: 200, Süre: 438ms, CorrelationId: 0HNIIR8D2PK4U:00000003
+2026-01-13 22:30:22.165 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000005
+2026-01-13 22:30:22.762 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 596ms, CorrelationId: 0HNIIR8D2PK4U:00000005
+2026-01-13 22:30:32.739 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000007
+2026-01-13 22:30:33.075 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 336ms, CorrelationId: 0HNIIR8D2PK4U:00000007
+2026-01-13 22:31:16.370 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIR8D2PK4V:00000002
+2026-01-13 22:31:16.902 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 531ms, CorrelationId: 0HNIIR8D2PK4V:00000002
+2026-01-13 22:31:17.747 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK4V:00000004
+2026-01-13 22:31:17.812 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 64ms, CorrelationId: 0HNIIR8D2PK4V:00000004
+2026-01-13 22:31:21.319 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK4V:00000005
+2026-01-13 22:31:21.376 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 56ms, CorrelationId: 0HNIIR8D2PK4V:00000005
+2026-01-13 22:34:53.910 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000009
+2026-01-13 22:34:54.556 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 645ms, CorrelationId: 0HNIIR8D2PK4U:00000009
+2026-01-13 22:34:54.561 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000001
+2026-01-13 22:34:54.663 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 102ms, CorrelationId: 0HNIIR8D2PK50:00000001
+2026-01-13 22:34:58.780 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000002
+2026-01-13 22:34:58.883 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 102ms, CorrelationId: 0HNIIR8D2PK50:00000002
+2026-01-13 22:34:58.889 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:0000000A
+2026-01-13 22:34:58.994 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 105ms, CorrelationId: 0HNIIR8D2PK4U:0000000A
+2026-01-13 22:35:28.996 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:0000000C
+2026-01-13 22:35:29.160 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 163ms, CorrelationId: 0HNIIR8D2PK4U:0000000C
+2026-01-13 22:35:29.163 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000004
+2026-01-13 22:35:29.271 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 108ms, CorrelationId: 0HNIIR8D2PK50:00000004
+2026-01-13 22:35:31.839 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000005
+2026-01-13 22:35:31.944 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 105ms, CorrelationId: 0HNIIR8D2PK50:00000005
+2026-01-13 22:35:31.955 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:0000000D
+2026-01-13 22:35:32.060 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 105ms, CorrelationId: 0HNIIR8D2PK4U:0000000D
+2026-01-13 22:35:33.761 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:0000000E
+2026-01-13 22:35:33.864 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 103ms, CorrelationId: 0HNIIR8D2PK4U:0000000E
+2026-01-13 22:35:33.866 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000006
+2026-01-13 22:35:33.967 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 101ms, CorrelationId: 0HNIIR8D2PK50:00000006
+2026-01-13 22:35:36.767 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000008
+2026-01-13 22:35:36.868 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 100ms, CorrelationId: 0HNIIR8D2PK50:00000008
+2026-01-13 22:35:36.873 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:0000000F
+2026-01-13 22:35:36.978 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 104ms, CorrelationId: 0HNIIR8D2PK4U:0000000F
+2026-01-13 22:35:38.833 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000010
+2026-01-13 22:35:38.933 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 99ms, CorrelationId: 0HNIIR8D2PK4U:00000010
+2026-01-13 22:35:38.935 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000009
+2026-01-13 22:35:39.036 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 100ms, CorrelationId: 0HNIIR8D2PK50:00000009
+2026-01-13 22:35:40.850 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000000A
+2026-01-13 22:35:40.951 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 100ms, CorrelationId: 0HNIIR8D2PK50:0000000A
+2026-01-13 22:35:40.957 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000011
+2026-01-13 22:35:41.059 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 101ms, CorrelationId: 0HNIIR8D2PK4U:00000011
+2026-01-13 22:35:54.832 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK4U:00000013
+2026-01-13 22:35:54.936 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 103ms, CorrelationId: 0HNIIR8D2PK4U:00000013
+2026-01-13 22:35:54.941 +03:00 [INF] HTTP GET /api/profile/owner başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000000B
+2026-01-13 22:35:55.054 +03:00 [INF] HTTP GET /api/profile/owner tamamlandı. StatusCode: 200, Süre: 112ms, CorrelationId: 0HNIIR8D2PK50:0000000B
+2026-01-13 22:36:14.949 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000000D
+2026-01-13 22:36:15.417 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 466ms, CorrelationId: 0HNIIR8D2PK50:0000000D
+2026-01-13 22:36:17.050 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000000F
+2026-01-13 22:36:17.108 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 57ms, CorrelationId: 0HNIIR8D2PK50:0000000F
+2026-01-13 22:36:54.186 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000011
+2026-01-13 22:36:54.240 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 53ms, CorrelationId: 0HNIIR8D2PK50:00000011
+2026-01-13 22:37:29.721 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000013
+2026-01-13 22:37:29.774 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 52ms, CorrelationId: 0HNIIR8D2PK50:00000013
+2026-01-13 22:37:53.588 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000015
+2026-01-13 22:37:53.642 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 54ms, CorrelationId: 0HNIIR8D2PK50:00000015
+2026-01-13 22:38:20.694 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000017
+2026-01-13 22:38:20.751 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 56ms, CorrelationId: 0HNIIR8D2PK50:00000017
+2026-01-13 22:38:25.869 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000019
+2026-01-13 22:38:26.008 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 138ms, CorrelationId: 0HNIIR8D2PK50:00000019
+2026-01-13 22:38:42.139 +03:00 [INF] HTTP GET /api/contact başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000001B
+2026-01-13 22:38:42.222 +03:00 [INF] HTTP GET /api/contact tamamlandı. StatusCode: 200, Süre: 83ms, CorrelationId: 0HNIIR8D2PK50:0000001B
+2026-01-13 22:38:45.244 +03:00 [INF] HTTP GET /api/skills başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000001D
+2026-01-13 22:38:45.377 +03:00 [INF] HTTP GET /api/skills tamamlandı. StatusCode: 200, Süre: 133ms, CorrelationId: 0HNIIR8D2PK50:0000001D
+2026-01-13 22:38:52.264 +03:00 [INF] HTTP GET /api/admin/stats başlatıldı. CorrelationId: 0HNIIR8D2PK50:0000001F
+2026-01-13 22:38:52.725 +03:00 [INF] HTTP GET /api/admin/stats tamamlandı. StatusCode: 200, Süre: 461ms, CorrelationId: 0HNIIR8D2PK50:0000001F
+2026-01-13 22:38:53.431 +03:00 [INF] HTTP GET /api/projects/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000021
+2026-01-13 22:38:53.485 +03:00 [INF] HTTP GET /api/projects/all tamamlandı. StatusCode: 200, Süre: 54ms, CorrelationId: 0HNIIR8D2PK50:00000021
+2026-01-13 22:38:54.162 +03:00 [INF] HTTP GET /api/blog/all başlatıldı. CorrelationId: 0HNIIR8D2PK50:00000023
+2026-01-13 22:38:54.218 +03:00 [INF] HTTP GET /api/blog/all tamamlandı. StatusCode: 200, Süre: 55ms, CorrelationId: 0HNIIR8D2PK50:00000023
+2026-01-13 23:06:55.597 +03:00 [ERR] Database migration veya seed sırasında hata oluştu.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'ApplicationDbContext' has pending changes. Add a new migration before updating the database. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Migrations.Internal.NpgsqlMigrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Program.<Main>$(String[] args) in D:\GitRepo\Portfolio\backend\src\Portfolio.Api\Program.cs:line 164
+2026-01-13 23:56:49.608 +03:00 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:56:49.638 +03:00 [WRN] The entity type 'IdentityRoleClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:56:49.640 +03:00 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:56:49.641 +03:00 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:57:10.654 +03:00 [WRN] The entity type 'IdentityUserClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:57:10.696 +03:00 [WRN] The entity type 'IdentityRoleClaim' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:57:10.701 +03:00 [WRN] The entity type 'IdentityUserLogin' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.
+2026-01-13 23:57:10.706 +03:00 [WRN] The entity type 'IdentityUserToken' was first mapped explicitly and then ignored. Consider not mapping the entity type in the first place.

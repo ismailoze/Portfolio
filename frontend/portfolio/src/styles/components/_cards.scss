@@ -1,0 +1,85 @@
+// Card styles
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all $transition-base;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
+  }
+  
+  &--glass {
+    @include glass();
+    
+    &:hover {
+      @include glass(0.15, 15px);
+    }
+  }
+  
+  &--interactive {
+    cursor: pointer;
+    
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+  
+  &__header {
+    margin-bottom: 1rem;
+  }
+  
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  &__body {
+    color: var(--text-secondary);
+  }
+  
+  &__footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+// Project card specific
+.project-card {
+  @extend .card;
+  overflow: hidden;
+  position: relative;
+  
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    transition: transform $transition-slow;
+  }
+  
+  &:hover &__image {
+    transform: scale(1.05);
+  }
+  
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  &__tag {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--bg-secondary);
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+}

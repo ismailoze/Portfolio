@@ -1,0 +1,122 @@
+# ==========================================
+# === BACKEND ===
+# ==========================================
+bin/
+obj/
+out/
+logs/
+packages/
+PublishOutput/
+*.dll
+*.exe
+*.pdb
+*.nupkg
+*.snupkg
+*.deps.json
+*.runtimeconfig.json
+
+# ==========================================
+# === FRONTEND ===
+# ==========================================
+node_modules/
+dist/
+build/
+.cache/
+.tmp/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.ios/
+.android/
+ios/Pods/
+android/.gradle/
+android/app/build/
+ios/Flutter/Flutter.framework/
+ios/Flutter/App.framework/
+Generated.xcconfig
+Podfile.lock
+.eslintcache
+.npm-debug.log*
+.yarn-error.log*
+.pnpm-debug.log*
+coverage/lcov.info
+
+# ==========================================
+# === CONFIG / ENV / CERTIFICATE ===
+# ==========================================
+.env
+.env.*
+*.pfx
+*.pem
+*.key
+*.crt
+local.settings.json
+secrets.json
+launchSettings.json
+
+# ==========================================
+# === TEST & COVERAGE OUTPUT ===
+# ==========================================
+coverage/
+reports/
+test-results/
+cypress/videos/
+cypress/screenshots/
+
+# ==========================================
+# === MEDIA & HEAVY FILES ===
+# ==========================================
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.svg
+*.ico
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webp
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+
+# ==========================================
+# === IDE & TOOL SETTINGS ===
+# ==========================================
+# .vscode/ - Allow .vscode for tasks and launch configs
+.idea/
+.vs/
+.cursor/
+.DS_Store
+.history/
+Thumbs.db
+cursorignoreindex
+
+# ==========================================
+# === TEMPORARY & LOG FILES ===
+# ==========================================
+*.log
+*.tmp
+*.bak
+*.old
+*.swp
+*.swo
+temp/
+tmp/
+cache/
+
+# ==========================================
+# === OPTIONAL (AI'YE GÖSTERİLMESİ GEREKMEYEN) ===
+# ==========================================
+# docs/
+# screenshots/
+# migrations/

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Validation_EmailRequired" xml:space="preserve">
+    <value>Email boş olamaz.</value>
+  </data>
+  <data name="Validation_EmailInvalid" xml:space="preserve">
+    <value>Geçerli bir email adresi giriniz.</value>
+  </data>
+  <data name="Validation_PasswordRequired" xml:space="preserve">
+    <value>Şifre boş olamaz.</value>
+  </data>
+  <data name="Validation_PasswordMinLength" xml:space="preserve">
+    <value>Şifre en az 8 karakter olmalıdır.</value>
+  </data>
+  <data name="Validation_PasswordUppercase" xml:space="preserve">
+    <value>Şifre en az bir büyük harf içermelidir.</value>
+  </data>
+  <data name="Validation_PasswordLowercase" xml:space="preserve">
+    <value>Şifre en az bir küçük harf içermelidir.</value>
+  </data>
+  <data name="Validation_PasswordDigit" xml:space="preserve">
+    <value>Şifre en az bir rakam içermelidir.</value>
+  </data>
+  <data name="Validation_PasswordSpecialChar" xml:space="preserve">
+    <value>Şifre en az bir özel karakter içermelidir.</value>
+  </data>
+  <data name="Validation_FirstNameRequired" xml:space="preserve">
+    <value>Ad boş olamaz.</value>
+  </data>
+  <data name="Validation_FirstNameMaxLength" xml:space="preserve">
+    <value>Ad en fazla 50 karakter olabilir.</value>
+  </data>
+  <data name="Validation_LastNameRequired" xml:space="preserve">
+    <value>Soyad boş olamaz.</value>
+  </data>
+  <data name="Validation_LastNameMaxLength" xml:space="preserve">
+    <value>Soyad en fazla 50 karakter olabilir.</value>
+  </data>
+  <data name="Validation_NameRequired" xml:space="preserve">
+    <value>İsim boş olamaz.</value>
+  </data>
+  <data name="Validation_NameMaxLength" xml:space="preserve">
+    <value>İsim en fazla 100 karakter olabilir.</value>
+  </data>
+  <data name="Validation_SubjectRequired" xml:space="preserve">
+    <value>Konu boş olamaz.</value>
+  </data>
+  <data name="Validation_SubjectMaxLength" xml:space="preserve">
+    <value>Konu en fazla 200 karakter olabilir.</value>
+  </data>
+  <data name="Validation_MessageRequired" xml:space="preserve">
+    <value>Mesaj boş olamaz.</value>
+  </data>
+  <data name="Validation_MessageMaxLength" xml:space="preserve">
+    <value>Mesaj en fazla 2000 karakter olabilir.</value>
+  </data>
+  <data name="Validation_ProjectTitleRequired" xml:space="preserve">
+    <value>Proje başlığı boş olamaz.</value>
+  </data>
+  <data name="Validation_ProjectTitleMaxLength" xml:space="preserve">
+    <value>Proje başlığı en fazla 200 karakter olabilir.</value>
+  </data>
+  <data name="Validation_ProjectDescriptionRequired" xml:space="preserve">
+    <value>Proje açıklaması boş olamaz.</value>
+  </data>
+  <data name="Validation_ProjectDescriptionMaxLength" xml:space="preserve">
+    <value>Proje açıklaması en fazla 2000 karakter olabilir.</value>
+  </data>
+  <data name="Validation_GitHubUrlInvalid" xml:space="preserve">
+    <value>Geçerli bir GitHub URL'si giriniz.</value>
+  </data>
+  <data name="Validation_LiveUrlInvalid" xml:space="preserve">
+    <value>Geçerli bir Live URL'si giriniz.</value>
+  </data>
+  <data name="Validation_BlogTitleRequired" xml:space="preserve">
+    <value>Blog başlığı boş olamaz.</value>
+  </data>
+  <data name="Validation_BlogTitleMaxLength" xml:space="preserve">
+    <value>Blog başlığı en fazla 200 karakter olabilir.</value>
+  </data>
+  <data name="Validation_BlogContentRequired" xml:space="preserve">
+    <value>Blog içeriği boş olamaz.</value>
+  </data>
+  <data name="Validation_BlogExcerptRequired" xml:space="preserve">
+    <value>Blog özeti boş olamaz.</value>
+  </data>
+  <data name="Validation_BlogExcerptMaxLength" xml:space="preserve">
+    <value>Blog özeti en fazla 500 karakter olabilir.</value>
+  </data>
+  <data name="Validation_SlugRequired" xml:space="preserve">
+    <value>Slug boş olamaz.</value>
+  </data>
+  <data name="Validation_SlugInvalid" xml:space="preserve">
+    <value>Slug sadece küçük harf, rakam ve tire içerebilir.</value>
+  </data>
+  <data name="Auth_InvalidCredentials" xml:space="preserve">
+    <value>Geçersiz email veya şifre.</value>
+  </data>
+  <data name="Auth_EmailAlreadyExists" xml:space="preserve">
+    <value>Bu email adresi zaten kullanılıyor.</value>
+  </data>
+  <data name="Auth_UserCreationFailed" xml:space="preserve">
+    <value>Kullanıcı oluşturulamadı: {0}</value>
+  </data>
+  <data name="Auth_RefreshTokenNotImplemented" xml:space="preserve">
+    <value>Refresh token özelliği henüz implement edilmedi.</value>
+  </data>
+  <data name="Auth_TurnstileVerificationFailed" xml:space="preserve">
+    <value>Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.</value>
+  </data>
+  <data name="Contact_MessageNotFound" xml:space="preserve">
+    <value>Mesaj bulunamadı.</value>
+  </data>
+  <data name="Contact_TurnstileVerificationFailed" xml:space="preserve">
+    <value>Güvenlik doğrulaması başarısız. Lütfen tekrar deneyin.</value>
+  </data>
+  <data name="Error_General" xml:space="preserve">
+    <value>Bir hata oluştu. Lütfen daha sonra tekrar deneyin.</value>
+  </data>
+  <data name="Error_Validation" xml:space="preserve">
+    <value>Validation hatası</value>
+  </data>
+  <data name="Project_NotFound" xml:space="preserve">
+    <value>Proje bulunamadı.</value>
+  </data>
+  <data name="BlogPost_NotFound" xml:space="preserve">
+    <value>Blog yazısı bulunamadı.</value>
+  </data>
+  <data name="Validation_ImageUrlInvalid" xml:space="preserve">
+    <value>Geçerli bir görsel URL'si giriniz.</value>
+  </data>
+  <data name="Validation_DisplayOrderInvalid" xml:space="preserve">
+    <value>Görüntüleme sırası 0 veya daha büyük olmalıdır.</value>
+  </data>
+  <data name="Validation_TranslationsRequired" xml:space="preserve">
+    <value>En az bir dil için çeviri gereklidir.</value>
+  </data>
+  <data name="Validation_LanguageCodeRequired" xml:space="preserve">
+    <value>Dil kodu gereklidir.</value>
+  </data>
+  <data name="Validation_LanguageCodeInvalid" xml:space="preserve">
+    <value>Geçerli bir dil kodu giriniz (tr veya en).</value>
+  </data>
+</root>

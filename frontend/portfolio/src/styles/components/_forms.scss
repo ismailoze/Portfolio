@@ -1,0 +1,88 @@
+// Form styles
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all $transition-base;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-error {
+  margin-top: 0.5rem;
+  color: #ef4444;
+  font-size: 0.875rem;
+}
+
+.form-help {
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+// Floating label effect
+.form-floating {
+  position: relative;
+  
+  .form-input,
+  .form-textarea {
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .form-label {
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    margin: 0;
+    transition: all $transition-base;
+    pointer-events: none;
+    color: var(--text-secondary);
+  }
+  
+  .form-input:focus ~ .form-label,
+  .form-input:not(:placeholder-shown) ~ .form-label,
+  .form-textarea:focus ~ .form-label,
+  .form-textarea:not(:placeholder-shown) ~ .form-label {
+    top: 0.25rem;
+    left: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-primary);
+  }
+}

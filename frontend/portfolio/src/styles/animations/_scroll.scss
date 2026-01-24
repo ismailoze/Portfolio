@@ -1,0 +1,49 @@
+// Scroll animations
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  
+  &.revealed {
+    opacity: 1;
+  }
+}
+
+.scroll-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  
+  &.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Stagger animation for lists
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  
+  &.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{$i * 0.1}s;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom SCSS imports */
+@import 'styles/abstracts/variables';
+@import 'styles/abstracts/mixins';
+@import 'styles/base/reset';
+@import 'styles/base/typography';
+@import 'styles/components/buttons';
+@import 'styles/components/cards';
+@import 'styles/components/forms';
+@import 'styles/animations/fade';
+@import 'styles/animations/slide';
+@import 'styles/animations/hover';
+@import 'styles/animations/scroll';

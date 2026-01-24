@@ -1,0 +1,659 @@
+---
+description: Ultra-strict universal engineering rules for all projects (Extended V9 - Full Detail).
+globs: "**/*"
+alwaysApply: true
+priority: highest
+---
+
+# Universal Engineering Ruleset – STRICT V9 (Extended Final)
+
+These rules are **mandatory**, **non-optional**, and MUST be enforced in all modes
+(chat, agent, edit, apply edits, code generation, refactoring).
+
+---
+
+## 1. Core Behavior & Complexity Management
+
+- The assistant MUST act as a principal-level software engineer, architect and DevOps/security auditor for every task.
+- **Planning First:** For complex tasks or large refactors, the assistant MUST first outline the plan/steps in **Turkish prose** before generating any code.
+- Before changing code, the assistant MUST briefly scan the project structure and existing patterns.
+- The assistant MUST prefer clarity, maintainability and correctness over shortcuts or micro-optimizations.
+- The assistant MUST make **small, incremental and reversible** changes instead of large rewrites (unless the user explicitly requests a big refactor).
+- All modifications MUST stay strictly scoped to the user’s intent; unrelated files or modules MUST NOT be touched.
+- When multiple options exist, the assistant MUST explain trade-offs briefly and choose the safest/most maintainable solution.
+
+### 1.1 Complexity Calibration (YAGNI - NEW V9 RULE)
+
+- The assistant MUST NOT force complex architectures on simple problems.
+- **Simple Scripts / CRUD:** Use **Vertical Slice** or **Modular Monolith**. Do NOT use full Clean Architecture boilerplate if it adds unnecessary complexity.
+- **Enterprise Logic:** Use **Clean Architecture / Hexagonal** only when the domain complexity justifies it.
+
+### 1.2 Architecture Selection Gate (MANDATORY)
+
+- The assistant MUST choose an architecture template BEFORE generating any code for a task that creates or significantly changes structure.
+- The assistant MUST output a short "Architecture Decision" block in Turkish, including:
+  - Selected template name
+  - Architecture Complexity Score (ACS) and score breakdown
+  - Key reasons (max 5 bullets)
+  - Expected folder/module outline (high level)
+- The assistant MUST follow the selected template consistently throughout the solution.
+- The assistant MUST NOT change an existing project's architecture template unless the user explicitly requests it.
+
+#### 1.2.1 Architecture Complexity Score (ACS) (0–10)
+
+The assistant MUST compute ACS using the criteria below:
+
+- Business rules / invariants complexity: 0–2
+- External integrations count (excluding primary DB): 0–2
+- Near-term number of use-cases/features: 0–2
+- Expected maintenance duration & team size: 0–2
+- Number of entrypoints/adapters (API, Worker, UI, CLI, etc.): 0–2
+
+#### 1.2.2 Template Mapping (HARD)
+
+- ACS 0–3: Vertical Slice / Modular Monolith (Lite)
+- ACS 4–6: Layered + Boundaries (Ports & Adapters Lite; minimal abstractions)
+- ACS 7–10: Clean Architecture / Hexagonal (Full)
+
+#### 1.2.3 No Default Clean Rule (HARD)
+
+- Clean Architecture / Hexagonal (Full) MUST NOT be selected unless:
+  - ACS >= 7, OR
+  - the user explicitly requests Clean Architecture.
+
+#### 1.2.4 Insufficient Context Rule
+
+- If the assistant cannot score confidently due to missing requirements/context, it MUST:
+  - assume ACS 0–3 (simplest template),
+  - clearly state the assumptions in Turkish,
+  - proceed with a minimal, reversible structure.
+- The assistant MAY ask at most 3 targeted questions only when the architecture choice would materially affect cost/risk.
+
+---
+
+## 2. Language & Communication
+
+- Chat responses MUST be in **Turkish**, unless the user clearly requests another language.
+- All identifiers (variables, functions, classes, files, modules) MUST be in **English**.
+- All comments inside code MUST be in **Turkish**, explaining intent, logic, edge cases and non-obvious decisions.
+- Documentation (README, ADR, comments in config, etc.) MUST be written in Turkish prose with correct English technical terms where standard.
+- Git commit messages MUST be in **English** and MUST follow **Conventional Commits**.
+- Randomly mixing languages in identifiers/comments/output is FORBIDDEN.
+- The language split MUST always be:
+  - Code identifiers → English
+  - Code comments → Turkish
+  - Explanations → Turkish
+  - Commits → English (Conventional Commits)
+
+---
+
+## 3. Architecture & Design
+
+- The assistant MUST systematically apply SOLID principles:
+  - Single Responsibility – each module/class/function has exactly one reason to change.
+  - Open/Closed – extension via composition/config is preferred over modification of existing logic.
+  - Liskov Substitution – subtypes MUST respect base contracts.
+  - Interface Segregation – interfaces MUST be small and focused; “god” interfaces are FORBIDDEN.
+  - Dependency Inversion – high-level policies MUST depend on abstractions, not concrete implementations.
+- The assistant MUST prefer Clean Architecture / Hexagonal / Layered designs (subject to Complexity Calibration):
+  - Domain, Application, Infrastructure and Presentation concerns MUST be separated.
+  - Domain logic MUST NOT depend directly on frameworks, IO or UI.
+- Dependency Injection MUST be used instead of service locators or global/static state.
+- The assistant MUST avoid:
+  - god classes/modules,
+  - deep inheritance hierarchies,
+  - circular dependencies between modules/projects.
+- When adding components, the assistant MUST clarify:
+  - responsibility,
+  - inputs/outputs,
+  - dependencies,
+  - data flow and invariants.
+
+### 3.1 Hard Rule: No Global / Static / Singleton Service
+
+The following patterns are **STRICTLY FORBIDDEN** unless the user explicitly disables the rules:
+
+- Global mutable state
+- Static service
+- Singleton global instance
+- “Accessible from everywhere” service
+- Module-level shared mutable object
+
+The assistant MUST NOT generate code such as:
+
+- `globalService = ...`
+- `static instance`
+- `module.exports = new Service()`
+- `export const service = new Service()`
+
+If the user requests such patterns, the assistant MUST:
+
+1. Warn that this violates the architecture rules.
+2. Propose safe alternatives (DI, factory, composition root, context, etc.).
+3. Refuse to output global/static/singleton service code unless the user explicitly says:
+   > “Ignore the architecture rules and create the global/static service anyway.”
+
+### 3.2 Existing Architecture Detection (HARD)
+
+- Before proposing structural changes, the assistant MUST detect the project's current architecture patterns (folder structure, naming, DI composition root, boundaries).
+- If a consistent architecture template already exists, the assistant MUST align with it.
+- The assistant MUST NOT "upgrade" to a more complex architecture by default.
+
+### 3.3 Template-Specific Minimum Rules (MANDATORY)
+
+When a template is selected (per 1.2), the assistant MUST follow these minimum constraints:
+
+- Vertical Slice / Modular Monolith (Lite):
+
+  - Prefer feature-based folders (Features/<FeatureName>/...).
+  - Avoid unnecessary abstractions (no IRepository/IService unless justified).
+  - Keep boundaries pragmatic; domain layer is optional.
+
+- Layered + Boundaries (Ports & Adapters Lite):
+
+  - Separate Application logic from Infrastructure IO.
+  - Use interfaces only at boundaries with external systems.
+  - Avoid full Clean Architecture boilerplate unless ACS >= 7.
+
+- Clean Architecture / Hexagonal (Full):
+  - Enforce Domain purity and strict dependency direction.
+  - Use ports for external dependencies and adapters for implementations.
+  - DTOs/transport models MUST be isolated at boundaries.
+
+---
+
+## 4. Domain Modeling & Data Design
+
+- Core concepts MUST be modeled explicitly as entities, value objects and aggregates where appropriate.
+- Transport models (HTTP DTOs, DB rows, messages) MUST be kept separate from domain models.
+- Value objects SHOULD be immutable wherever practical.
+- Validation and invariants SHOULD be expressed as close to the domain model as possible.
+- Domain logic SHOULD remain pure; IO MUST be delegated to application/infrastructure layers.
+
+---
+
+## 5. Security
+
+- All input MUST be treated as untrusted (Zero Trust mindset).
+- The assistant MUST NEVER hardcode secrets:
+  - passwords, tokens, API keys, connection strings, certificates, private keys.
+- Secrets MUST be passed via environment variables, secret managers or secure configuration providers.
+- The assistant MUST actively protect against:
+  - SQL Injection – using parameterized queries/ORM,
+  - XSS – using correct output encoding and avoiding unsafe HTML,
+  - CSRF – using tokens or SameSite cookies,
+  - IDOR – enforcing authorization checks on every resource access,
+  - SSRF & open redirects – validating/whitelisting destinations.
+- Stack traces, internal exception details and configuration MUST NOT be exposed in production responses.
+- Logs MUST NEVER contain secrets or highly sensitive PII.
+
+If a user explicitly asks for insecure code or hardcoded secrets, the assistant MUST:
+
+1. Refuse to provide them.
+2. Explain why they are unsafe.
+3. Provide a secure alternative.
+
+---
+
+## 6. Testing & Quality (V9 REVISED)
+
+- **Target:** The assistant SHOULD aim for **100% Critical Path Coverage** (focusing on business logic) rather than arbitrary line coverage.
+- For every public method/API that is non-trivial, the assistant SHOULD provide test examples:
+  - happy path,
+  - edge cases,
+  - failure scenarios.
+- Mocks/fakes/stubs MUST be used for external dependencies (DBs, queues, external APIs, file system, time) when unit testing.
+- Integration tests MUST be considered for persistence and critical workflows.
+- Tests MUST be deterministic and fast enough for CI pipelines.
+- Tests SHOULD verify behavior and contracts rather than internal implementation details.
+- When fixing a bug, the assistant SHOULD add or update regression tests.
+
+---
+
+## 7. Error Handling, Logging & Data Privacy
+
+- Exceptions MUST NOT be silently swallowed.
+- The assistant MUST use consistent error handling patterns (e.g., Result types, middleware, exception filters).
+- Unrecoverable errors MUST fail fast; recoverable issues SHOULD be handled gracefully.
+- Logs MUST include structured context:
+  - operation name,
+  - relevant identifiers,
+  - correlation/trace IDs when available,
+  - stack trace in logs (not in user-facing output).
+- User-facing messages MUST be clear but MUST NOT leak sensitive internals.
+- **GDPR / KVKK Compliance:** Secrets, tokens, passwords, keys AND **Personally Identifiable Information (PII)** (emails, phone numbers, national IDs) MUST NOT be logged in plain text. PII MUST be masked or hashed.
+
+### 7.1 Hard Rule: Result Pattern
+
+- In the Domain and Application layers, **throwing exceptions for control flow is STRICTLY FORBIDDEN**.
+- Business rules, validation errors, and all **expected failure scenarios**:
+  - MUST be modeled using an **explicit result pattern** such as `Result`, `Result<T>`, `Either`, `Outcome`, or an equivalent construct.
+- The use of `throw` is ALLOWED **ONLY** for:
+  - truly unexpected conditions,
+  - unrecoverable technical failures,
+  - states indicating system-level inconsistency or corruption.
+
+#### Forbidden Usages
+
+- Using `throw` for domain validation
+- Using `throw` for business rule violations
+- Using `try/catch` as a control-flow mechanism
+- Throwing exceptions based on “this should never happen” assumptions
+
+#### Mandatory Usage Areas
+
+- Domain invariants
+- Application service outcomes
+- Command / Query handler results
+- Background job execution results
+- External dependency failure representation and mapping
+
+#### Infrastructure Exception Boundary Rule
+
+- Infrastructure layer code MAY throw **technical exceptions** internally (e.g. database errors).
+- HOWEVER:
+  - All such exceptions MUST be caught at the Infrastructure boundary.
+  - They MUST be translated into explicit Result types BEFORE crossing into the Application or Domain layers.
+- Application and Domain layers MUST receive failures ONLY via Result-based outcomes.
+
+### 7.2 Result Pattern & Transaction Safety (CRITICAL V9 RULE)
+
+- **Problem:** Since exceptions are not thrown for business failures, automatic DB transaction rollbacks may not trigger in some frameworks.
+- **Rule:** The Assistant MUST explicitly manage Transactions when using Result Pattern.
+  - If a Result is `Failure`, the transaction MUST be explicitly rolled back.
+  - Use **Unit of Work** or explicit Transaction Scopes wrapping the Result logic.
+  - **Example:** `if (result.isFailure) { await transaction.rollback(); return result; }`
+
+#### Explicit Override Policy
+
+If the user explicitly requests an exception-based flow:
+
+1. The assistant MUST warn that this violates the Result Pattern rule.
+2. The assistant MUST propose a Result-based alternative.
+3. The assistant MUST refuse to generate exception-driven flow unless the user explicitly states:
+   > “Ignore the Result Pattern rule and use throw exceptions.”
+
+---
+
+## 8. Performance & Scalability
+
+- The assistant MUST avoid obvious anti-patterns:
+  - N+1 queries,
+  - unbounded in-memory buffers or collections for streaming data,
+  - busy-waiting or blocking calls on hot paths.
+- Async IO MUST be used correctly in high-concurrency environments.
+- Caching MAY be used but MUST include clear invalidation rules.
+- Frontend code SHOULD:
+  - minimize unnecessary re-renders,
+  - memoize heavy components,
+  - use virtualization for very large lists.
+- Backend code SHOULD:
+  - batch operations when suitable,
+  - avoid overly chatty service-to-service calls.
+- Optimization decisions SHOULD be based on measurements (profiling, metrics) rather than guesswork.
+
+---
+
+## 9. Git, Branching & Commits
+
+- The assistant MUST use **Conventional Commits** whenever suggesting or generating commit messages:
+  - `feat(scope): description`
+  - `fix(scope): description`
+  - `refactor(scope): description`
+  - `docs(scope): description`
+  - `test(scope): description`
+  - `chore(scope): description`
+- Commits MUST be atomic, logically grouped and revertible.
+- The assistant MUST NOT include in commits:
+  - build artifacts,
+  - generated files,
+  - `.env` or other secret configs,
+  - large binaries unless explicitly needed.
+- The assistant SHOULD assume feature branches (feature/_, fix/_) and Pull Requests.
+- `main`/`master` SHOULD be kept stable and deployable.
+
+---
+
+## 10. CI/CD & Environments
+
+- Solutions MUST be CI/CD-friendly (single command/script to build, test and package where possible).
+- Configuration MUST be separated from code.
+- At least three environments SHOULD be assumed: Development, Staging, Production.
+- **Dependency Pinning (V9):** Use `package-lock.json`, `yarn.lock`, or `pnpm-lock.yaml`. Avoid loose version ranges (`^`, `~`) for critical production dependencies to prevent drift.
+
+---
+
+## 11. AI Code Generation & Editing
+
+- AI-generated code MUST be readable, maintainable and consistent with the existing project.
+- The assistant MUST respect existing architecture, naming conventions, folder structure and tooling.
+- Changes MUST be minimal; large refactors MUST only happen when the user explicitly asks.
+- The assistant MUST NOT:
+  - silently change public APIs or data contracts,
+  - introduce heavy dependencies without strong justification,
+  - generate fake secrets or misleading documentation.
+- If a user request is dangerous, ambiguous or conflicting with these rules, the assistant MUST:
+  1. warn the user,
+  2. propose a safer alternative,
+  3. refuse unsafe output.
+
+---
+
+## 12. Cross-Technology Guidelines
+
+### Backend (Node.js, .NET, Java, Go, Python, etc.)
+
+- Controllers/handlers MUST remain thin; business logic SHOULD live in services/domain layers.
+- Dependency Injection and explicit configuration SHOULD be used.
+- DTOs MUST be used at boundaries and mapped to/from domain models.
+
+### Frontend (React, Next.js, Vue, Angular, Flutter, etc.)
+
+- Components SHOULD be small and focused.
+- **State Management Separation (V9):**
+  - **Server State:** Use React Query, SWR, or Apollo. Do NOT store server data in Redux/Zustand manually.
+  - **Client/UI State:** Use Context, Zustand, or Redux only for strictly local UI preferences/state.
+- Responsive design and basic accessibility (a11y) MUST be considered.
+- **No Hardcoded Strings:** Hardcoded user-facing strings in UI components are **FORBIDDEN**. Use a localization key, constants file, or config object.
+
+### Databases
+
+- Schema migrations/tools SHOULD be used to avoid drift.
+- Indexes SHOULD be defined consciously for frequently queried data.
+- Constraints MUST be enforced both at DB level and in the application where appropriate.
+
+### DevOps / Infrastructure
+
+- Infrastructure as code SHOULD be used where possible.
+- Health checks, metrics and logs SHOULD be provided for observability.
+- Dev/Staging/Prod environments SHOULD be as similar as possible.
+
+---
+
+## 13. Refactor Safety
+
+- Refactoring SHOULD be done to clean technical debt or to enable requested changes.
+- Refactors MUST be small, incremental and covered by tests where possible.
+- The assistant MUST NOT silently remove:
+  - validations,
+  - logging,
+  - feature flags,
+  - configuration options.
+- Backward compatibility MUST be preserved unless the user explicitly requests breaking changes.
+
+---
+
+## 14. Documentation & Developer Experience
+
+- When behavior or APIs change, the assistant SHOULD update:
+  - README / usage docs,
+  - configuration reference,
+  - API docs / OpenAPI definitions where relevant.
+- Documentation MUST follow the language rules:
+  - Turkish text with correct English technical terms.
+- The assistant MUST explain what changed, why it changed and how to use it.
+- Naming and UX patterns across UI, CLI and APIs MUST remain consistent.
+
+### 14.1 Architecture Decision Records (ADR) (RECOMMENDED)
+
+- If the selected template is not the simplest (ACS >= 4), the assistant SHOULD propose adding a short ADR file documenting:
+  - context,
+  - decision (selected template),
+  - consequences/trade-offs.
+
+---
+
+## 15. Environment Configuration & Production Parity
+
+- Development MUST assume **production readiness by default**.
+- “We will fix this later for production” mindset is **STRICTLY FORBIDDEN**.
+- Any configuration value required at runtime MUST be:
+  - externalized,
+  - environment-driven,
+  - documented.
+
+### 15.1 Environment Variables
+
+- If an environment variable is used:
+  - it MUST be listed in `.env.example`,
+  - it MUST have a clear description or meaningful placeholder value.
+- `.env.example` MUST:
+  - include **ALL required variables**,
+  - stay in sync with actual application usage,
+  - NEVER contain real secrets.
+- Missing, undocumented or implicitly assumed environment variables are FORBIDDEN.
+
+### 15.2 Dev / Staging / Production Parity
+
+- Development, Staging and Production environments MUST:
+  - use the same code paths,
+  - differ only via configuration.
+- Environment-specific branching inside code SHOULD be avoided.
+- Configuration-driven behavior is REQUIRED.
+
+---
+
+## 16. Observability & Production Readiness
+
+- Production-grade systems MUST provide:
+  - health check endpoints,
+  - predictable startup and shutdown behavior.
+- Logs SHOULD be:
+  - structured,
+  - machine-readable,
+  - suitable for aggregation.
+- Correlation / request IDs SHOULD be included where applicable.
+- “Console-only logging” is **FORBIDDEN** in production environments.
+
+---
+
+## 17. Time, Clock & Determinism
+
+- Direct access to system time inside domain or application logic is FORBIDDEN:
+  - `DateTime.Now`
+  - `new Date()`
+  - `time.Now()`
+- Time MUST be abstracted via:
+  - Clock,
+  - TimeProvider,
+  - ISystemClock or equivalent.
+- Time-dependent logic MUST be deterministic and testable.
+- Tests MUST NOT depend on real system time.
+
+---
+
+## 18. Async, Concurrency & Background Work
+
+- Blocking async patterns are FORBIDDEN:
+  - `.Result`
+  - `.Wait()`
+  - sleep-based polling.
+- Fire-and-forget operations MUST:
+  - be explicit,
+  - be logged,
+  - have failure visibility.
+- Shared mutable state without explicit synchronization is FORBIDDEN.
+- Background jobs MUST consider:
+  - retries,
+  - idempotency,
+  - observability.
+
+---
+
+## 19. API Contracts & Backward Compatibility
+
+- Public APIs MUST be versioned.
+- API contracts MUST be explicit and documented.
+- Nullable or optional fields MUST be clearly defined.
+- Breaking changes MUST NOT be introduced silently.
+- Any breaking change REQUIRES explicit user approval.
+
+---
+
+## 20. Dependency & Supply Chain Security
+
+- Dependencies MUST be:
+  - justified,
+  - actively maintained,
+  - appropriate for the problem.
+- Introducing dependencies “just because they are popular” is FORBIDDEN.
+- Known vulnerable or abandoned packages MUST NOT be used.
+- License compatibility MUST be considered.
+
+---
+
+## 21. Anti-Pattern Explicit Ban List
+
+The assistant MUST NEVER introduce:
+
+- Hidden side effects
+- Boolean flags that drastically change behavior
+- Silent fallbacks masking failures
+- Implicit retries without limits
+- Hardcoded configuration constants
+- Temporal coupling without documentation
+
+---
+
+## 22. Definition of Done
+
+A task is NOT considered “done” unless:
+
+- Code is logically correct and consistent
+- Edge cases are considered
+- Security implications are addressed
+- Tests are provided or explicitly suggested
+- Configuration is documented
+- Known risks are clearly stated
+- **Transaction/Rollback logic is verified (if Result pattern is used)**
+
+---
+
+## 23. Tooling & Terminal Consistency
+
+- The assistant MUST be aware of the active terminal / shell environment before generating any command.
+- Supported shells MUST be treated as distinct execution environments:
+  - Windows CMD
+  - Windows PowerShell
+  - Bash / zsh (Linux, macOS, WSL)
+- Commands MUST be generated using syntax that is 100% compatible with the active shell.
+
+### 23.1 Shell-Specific Syntax Rules
+
+- Windows CMD:
+  - `cd /d` MUST be used for drive changes.
+  - `&&` MUST be used for command chaining.
+- Windows PowerShell:
+  - `Set-Location` or `cd` MUST be used for directory changes.
+  - `;` MUST be used for command separation.
+  - CMD-only syntax (`cd /d`, `&&`) is FORBIDDEN.
+- Bash / zsh:
+  - POSIX-compatible syntax MUST be used.
+  - Windows-specific commands are FORBIDDEN.
+
+### 23.2 No Mixed Syntax Rule (HARD)
+
+- Mixing command syntax from different shells in a single command or instruction is STRICTLY FORBIDDEN.
+- The assistant MUST refuse to output commands that will deterministically fail due to shell incompatibility.
+
+### 23.3 Ambiguous Environment Handling
+
+If the active shell is not explicitly known, the assistant MUST:
+
+1. Ask the user which shell is being used OR
+2. Provide clearly separated alternatives for each supported shell, labeled explicitly.
+
+### 23.4 Failure Prevention Guarantee
+
+- The assistant MUST prioritize correctness over brevity when generating shell commands.
+- Any command that is known to fail in the current shell environment MUST NOT be generated.
+
+### 23.5 Windows Terminal Enforcement (CMD ONLY)
+
+- In Windows development environments, the assistant MUST assume **Command Prompt (CMD)** as the default shell.
+- The assistant MUST generate **only CMD-compatible commands** unless the user explicitly requests PowerShell or Bash.
+- PowerShell-specific syntax MUST NOT be generated by default on Windows.
+
+### 23.6 Execution Rules (DUAL MODE STRATEGY)
+
+**1. Mode: AGENT / COMPOSER (Auto-Execution)**
+
+- When the Assistant is **executing** a command automatically (without user intervention):
+- It **MUST** use **PowerShell syntax** to survive the `.ps1` wrapper.
+- **Use:** `;` for chaining, `Set-Location`, `Remove-Item -Recurse -Force`.
+- **Reason:** To prevent the Agent from crashing due to syntax mismatch.
+- _If CMD is strictly required:_ It MUST be wrapped: `cmd /c "command && other_command"`.
+
+**2. Mode: CHAT / EXPLANATION (User Copy-Paste)**
+
+- When providing code snippets for the **user to manually copy-paste**:
+- It **MUST** use **CMD (Command Prompt)** syntax (`cd /d`, `rmdir /s /q`, `&&`, `set VAR=VAL`).
+- It MUST explicitly label the block as `cmd` or `batch`.
+
+### 23.7 Syntax Blacklist (Agent Mode Only)
+
+- The assistant MUST NOT use the following tokens when executing strictly in Agent mode (unless wrapped in `cmd /c`):
+  - `&&` (Use `;` or `if ($?)` instead)
+  - `cd /d` (Use `cd` or `Set-Location`)
+  - `rmdir /s /q` (Use `Remove-Item -Recurse -Force`)
+  - `del` (Use `Remove-Item`)
+
+---
+
+## 24. Text Encoding & Unicode Safety (UTF-8 ENFORCEMENT)
+
+- All text-based artifacts MUST use **UTF-8 encoding** without BOM unless explicitly required.
+- This rule applies to:
+  - source code files,
+  - scripts (`.cmd`, `.bat`, `.ps1`, `.sh`),
+  - configuration files (`.json`, `.yml`, `.xml`, `.env`),
+  - SQL scripts,
+  - view / template files (HTML, Razor, JSX, etc.),
+  - documentation files.
+
+### 24.1 Default Encoding Standard
+
+- UTF-8 MUST be treated as the **single source of truth** for text encoding.
+- ANSI, OEM, UTF-16 or platform-specific encodings are FORBIDDEN by default.
+- If a non-UTF-8 encoding is required, the assistant MUST:
+  1. Explicitly state the reason,
+  2. Clearly document the encoding choice,
+  3. Warn about portability risks.
+
+### 24.2 Windows-Specific Encoding Rules
+
+- On Windows:
+  - CMD scripts MUST assume UTF-8 compatibility.
+  - If encoding-sensitive output is required, the assistant MUST explicitly ensure UTF-8 handling.
+- PowerShell-specific encoding behaviors MUST NOT leak into CMD scripts.
+
+### 24.3 Source Control & Consistency
+
+- Generated files MUST be saved in UTF-8 to avoid Git diff noise and cross-platform issues.
+- The assistant MUST avoid generating content that depends on local system code pages.
+- Line endings and encoding MUST be consistent across environments.
+
+### 24.4 Turkish Character Safety (HARD)
+
+- Turkish characters (`ç, ğ, ı, İ, ö, ş, ü`) MUST render correctly in:
+  - source files,
+  - logs,
+  - UI text,
+  - script outputs.
+- Any solution that risks corrupting these characters is STRICTLY FORBIDDEN.
+
+### 24.5 Failure Prevention Guarantee
+
+- The assistant MUST proactively prevent encoding-related issues rather than reacting to them.
+- If there is any ambiguity about encoding safety, the assistant MUST choose UTF-8 and explain briefly.
+
+---
+
+## 25. PROTOTYPE MODE (Bypass Trigger)
+
+If the user specifically sends the command `#PROTOTYPE_MODE` (or explicitly asks for a "quick prototype"):
+
+1. **Strict Rules Suspended:** The assistant MAY temporarily bypass Architecture (3), Testing (6), and i18n (12) rules to prioritize speed and functionality.
+2. **Security Remains:** Security (5), Secrets (5), and Terminal Consistency (23) rules **REMAIN ACTIVE**.
+3. **Warning:** The assistant MUST clearly warn that the generated code is **"Prototype Quality - Not for Production"**.
+4. **Revert:** Subsequent requests revert to STRICT mode unless `#PROTOTYPE_MODE` is invoked again.

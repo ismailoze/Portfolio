@@ -1,0 +1,83 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800 flex items-center justify-center">
+  <div class="container mx-auto px-4 max-w-md">
+    <!-- Login Card -->
+    <div class="card">
+      <div class="card__header text-center">
+        <h1 class="text-3xl md:text-4xl font-bold mb-2 text-gray-900 dark:text-white">
+          {{ 'auth.login' | translate }}
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400">
+          {{ 'auth.loginDescription' | translate }}
+        </p>
+      </div>
+
+      <div class="card__body">
+        <!-- Error Message -->
+        @if (error()) {
+          <div class="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+            <p class="text-red-800 dark:text-red-300 text-sm">
+              {{ error()! | translate }}
+            </p>
+          </div>
+        }
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email" class="form-label">
+              {{ 'auth.email' | translate }}
+            </label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="form-input"
+              [class.border-red-500]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+              [placeholder]="'auth.emailPlaceholder' | translate">
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+              <p class="form-error">{{ getFieldError('email') | translate }}</p>
+            }
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label for="password" class="form-label">
+              {{ 'auth.password' | translate }}
+            </label>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              class="form-input"
+              [class.border-red-500]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+              [placeholder]="'auth.passwordPlaceholder' | translate">
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+              <p class="form-error">{{ getFieldError('password') | translate }}</p>
+            }
+          </div>
+
+          <!-- Cloudflare Turnstile -->
+          <div class="form-group">
+            <div #turnstileWidget class="flex justify-center"></div>
+            @if (error() === 'auth.turnstileRequired' || error() === 'auth.turnstileError') {
+              <p class="form-error mt-2">{{ error() | translate }}</p>
+            }
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            [disabled]="loading() || loginForm.invalid"
+            class="btn btn--primary btn--lg w-full">
+            @if (loading()) {
+              <span>{{ 'common.loading' | translate }}</span>
+            } @else {
+              <span>{{ 'auth.login' | translate }}</span>
+            }
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

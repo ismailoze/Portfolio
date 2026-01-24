@@ -1,0 +1,51 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        {{ 'nav.education' | translate }}
+      </h1>
+    </div>
+
+    <!-- Loading -->
+    @if (loading()) {
+      <app-loading-spinner [message]="'common.loading' | translate"></app-loading-spinner>
+    }
+
+    <!-- Error -->
+    @if (error() && !loading()) {
+      <app-error-message 
+        [message]="error()!" 
+        [showRetry]="true"
+        [retryCallback]="loadEducations.bind(this)">
+      </app-error-message>
+    }
+
+    <!-- Education List -->
+    @if (!loading() && !error()) {
+      <div class="space-y-6">
+        @for (edu of educations(); track edu.id) {
+          <div class="card hover-lift" appScrollAnimation>
+            <div class="card__header">
+              <h3 class="card__title">{{ edu.degree }}</h3>
+              <p class="text-primary-600 dark:text-primary-400 font-semibold">{{ edu.institution }}</p>
+            </div>
+            <div class="card__body">
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                {{ edu.field }} • {{ formatDate(edu.startDate) }} - 
+                @if (edu.isCompleted && edu.endDate) {
+                  {{ formatDate(edu.endDate) }}
+                } @else {
+                  <span class="text-primary-600 dark:text-primary-400">Devam Ediyor</span>
+                }
+              </p>
+              @if (edu.description) {
+                <p>{{ edu.description }}</p>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="min-h-screen pt-28 pb-16 bg-white dark:bg-slate-800">
+  <div class="container mx-auto px-4 max-w-2xl">
+    <!-- Header -->
+    <div class="text-center mb-12" appScrollAnimation>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+        {{ 'contact.title' | translate }}
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        {{ 'contact.description' | translate }}
+      </p>
+    </div>
+
+    <!-- Success Message -->
+    @if (success()) {
+      <div class="mb-6 p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+        <p class="text-green-800 dark:text-green-300">
+          {{ 'contact.success' | translate }}
+        </p>
+      </div>
+    }
+
+    <!-- Error Message -->
+    @if (error()) {
+      <div class="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+        <p class="text-red-800 dark:text-red-300">
+          {{ error() }}
+        </p>
+      </div>
+    }
+
+    <!-- Contact Form -->
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" appScrollAnimation>
+      <div class="space-y-6">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name" class="form-label">
+            {{ 'contact.name' | translate }}
+          </label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="form-input"
+            [class.border-red-500]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+          @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+            <p class="form-error">{{ getFieldError('name') }}</p>
+          }
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">
+            {{ 'contact.email' | translate }}
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="form-input"
+            [class.border-red-500]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+          @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+            <p class="form-error">{{ getFieldError('email') }}</p>
+          }
+        </div>
+
+        <!-- Subject -->
+        <div class="form-group">
+          <label for="subject" class="form-label">
+            {{ 'contact.subject' | translate }}
+          </label>
+          <input
+            id="subject"
+            type="text"
+            formControlName="subject"
+            class="form-input"
+            [class.border-red-500]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+          @if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+            <p class="form-error">{{ getFieldError('subject') }}</p>
+          }
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+          <label for="message" class="form-label">
+            {{ 'contact.message' | translate }}
+          </label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="6"
+            class="form-textarea"
+            [class.border-red-500]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
+          @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+            <p class="form-error">{{ getFieldError('message') }}</p>
+          }
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div class="form-group">
+          <div #turnstileWidget class="flex justify-center"></div>
+          @if (error() === 'contact.turnstileRequired' || error() === 'contact.turnstileError') {
+            <p class="form-error mt-2">{{ error() | translate }}</p>
+          }
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          [disabled]="submitting() || contactForm.invalid"
+          class="btn btn--primary btn--lg w-full">
+          @if (submitting()) {
+            <span>{{ 'contact.sending' | translate }}</span>
+          } @else {
+            <span>{{ 'contact.send' | translate }}</span>
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

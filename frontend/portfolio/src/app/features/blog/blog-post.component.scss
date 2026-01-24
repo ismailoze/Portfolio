@@ -1,0 +1,22 @@
+// Blog post styles
+::ng-deep {
+  .prose {
+    @apply text-gray-700 dark:text-gray-300;
+    
+    h1, h2, h3, h4, h5, h6 {
+      @apply text-gray-900 dark:text-white;
+    }
+    
+    a {
+      @apply text-primary-600 dark:text-primary-400;
+    }
+    
+    code {
+      @apply bg-gray-100 dark:bg-slate-700 px-2 py-1 rounded;
+    }
+    
+    pre {
+      @apply bg-gray-100 dark:bg-slate-700 p-4 rounded-lg overflow-x-auto;
+    }
+  }
+}
