@@ -5,51 +5,232 @@
     <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
       {{ "nav.blog" | translate }}
     </h2>
-    <button class="btn btn--primary w-full sm:w-auto text-sm sm:text-base">
+    <button
+      class="btn btn--primary w-full sm:w-auto text-sm sm:text-base"
+      disabled
+    >
       {{ "common.create" | translate }}
     </button>
   </div>
 
   @if (loading()) {
-  <app-loading-spinner></app-loading-spinner>
-  } @if (error() && !loading()) {
-  <app-error-message [message]="error()!"></app-error-message>
-  } @if (!loading() && !error()) { @if (posts().length === 0) {
-  <div class="text-center py-12">
-    <p class="text-gray-600 dark:text-gray-400 text-lg mb-4">
-      {{ "blog.noPosts" | translate }}
-    </p>
-    <button class="btn btn--primary">
-      {{ "common.create" | translate }} {{ "nav.blog" | translate }}
-    </button>
-  </div>
-  } @else {
-  <div class="space-y-3 sm:space-y-4">
-    @for (post of posts(); track post.id) {
-    <div class="card p-4 sm:p-6">
-      <div
-        class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4"
-      >
-        <div class="flex-1 min-w-0">
-          <h3
-            class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2 break-words"
-          >
-            {{ post.title }}
-          </h3>
-          <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            {{ post.isPublished ? "Published" : "Draft" }} •
-            {{ post.publishedAt ? (post.publishedAt | date) : "Not published" }}
-          </p>
-        </div>
-        <button
-          (click)="deletePost(post.id)"
-          class="btn btn--outline btn--sm text-red-600 dark:text-red-400 w-full sm:w-auto text-sm"
-        >
-          {{ "common.delete" | translate }}
+    <app-loading-spinner></app-loading-spinner>
+  }
+  @if (error() && !loading()) {
+    <app-error-message [message]="error()!"></app-error-message>
+  }
+  @if (!loading() && !error()) {
+    @if (posts().length === 0) {
+      <div class="text-center py-12">
+        <p class="text-gray-600 dark:text-gray-400 text-lg mb-4">
+          {{ "blog.noPosts" | translate }}
+        </p>
+        <button class="btn btn--primary">
+          {{ "common.create" | translate }} {{ "nav.blog" | translate }}
         </button>
       </div>
-    </div>
+    } @else {
+      <div class="space-y-3 sm:space-y-4">
+        @for (post of posts(); track post.id) {
+          <div class="card p-4 sm:p-6">
+            <div
+              class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4"
+            >
+              <div class="flex-1 min-w-0">
+                <h3
+                  class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2 break-words"
+                >
+                  {{ getPostTitle(post) }}
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                  {{ post.isPublished ? "Published" : "Draft" }} •
+                  {{ post.publishedAt ? (post.publishedAt | date) : "Not published" }}
+                </p>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                <button
+                  (click)="editPost(post)"
+                  class="btn btn--outline btn--sm flex-1 sm:flex-none text-sm"
+                >
+                  {{ "common.edit" | translate }}
+                </button>
+                <button
+                  (click)="deletePost(post, $event)"
+                  class="btn btn--outline btn--sm text-red-600 dark:text-red-400 flex-1 sm:flex-none text-sm"
+                >
+                  {{ "common.delete" | translate }}
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
     }
-  </div>
-  } }
+  }
+
+  @if (showForm()) {
+    <div
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-0 sm:p-4 overflow-y-auto"
+    >
+      <div
+        class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-none sm:rounded-lg max-w-3xl w-full h-full sm:h-auto sm:max-h-[90vh] sm:mx-4 sm:my-8 overflow-y-auto"
+      >
+        <div
+          class="flex justify-between items-center mb-4 sm:mb-6 sticky top-0 bg-white dark:bg-slate-800 pb-2 sm:pb-0 sm:static z-10"
+        >
+          <h3 class="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white pr-2">
+            {{ "common.edit" | translate }} {{ "nav.blog" | translate }}
+          </h3>
+          <button
+            (click)="onFormClose()"
+            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex-shrink-0"
+            [disabled]="submitting()"
+          >
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        @if (error()) {
+          <app-error-message [message]="error()!" class="mb-4"></app-error-message>
+        }
+
+        <form [formGroup]="blogForm" (ngSubmit)="onSubmit()" class="space-y-3 sm:space-y-4">
+          <!-- Language Tabs -->
+          <div class="border-b border-gray-200 dark:border-gray-700 mb-3 sm:mb-4">
+            <nav class="flex gap-1 sm:gap-2">
+              <button
+                type="button"
+                (click)="setActiveLanguage('tr')"
+                class="px-3 sm:px-4 py-2 font-medium text-xs sm:text-sm transition-colors flex-1 sm:flex-none"
+                [class.text-primary-600]="activeLanguage() === 'tr'"
+                [class.border-b-2]="activeLanguage() === 'tr'"
+                [class.border-primary-600]="activeLanguage() === 'tr'"
+                [class.text-gray-500]="activeLanguage() !== 'tr'"
+                [class.dark:text-gray-400]="activeLanguage() !== 'tr'"
+              >
+                Türkçe
+              </button>
+              <button
+                type="button"
+                (click)="setActiveLanguage('en')"
+                class="px-3 sm:px-4 py-2 font-medium text-xs sm:text-sm transition-colors flex-1 sm:flex-none"
+                [class.text-primary-600]="activeLanguage() === 'en'"
+                [class.border-b-2]="activeLanguage() === 'en'"
+                [class.border-primary-600]="activeLanguage() === 'en'"
+                [class.text-gray-500]="activeLanguage() !== 'en'"
+                [class.dark:text-gray-400]="activeLanguage() !== 'en'"
+              >
+                English
+              </button>
+            </nav>
+          </div>
+
+          @if (activeLanguage() === 'tr') {
+            <div class="space-y-3 sm:space-y-4">
+              <div class="form-group">
+                <label for="trTitle" class="form-label text-sm sm:text-base">Başlık (Türkçe) <span class="text-red-500">*</span></label>
+                <input id="trTitle" type="text" formControlName="trTitle" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('trTitle')?.touched && blogForm.get('trTitle')?.invalid" />
+                @if (blogForm.get('trTitle')?.touched && blogForm.get('trTitle')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('trTitle') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="trSlug" class="form-label text-sm sm:text-base">Slug (Türkçe) <span class="text-red-500">*</span></label>
+                <input id="trSlug" type="text" formControlName="trSlug" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('trSlug')?.touched && blogForm.get('trSlug')?.invalid" placeholder="yazi-url" />
+                @if (blogForm.get('trSlug')?.touched && blogForm.get('trSlug')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('trSlug') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="trExcerpt" class="form-label text-sm sm:text-base">Özet (Türkçe) <span class="text-red-500">*</span></label>
+                <textarea id="trExcerpt" formControlName="trExcerpt" rows="2" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('trExcerpt')?.touched && blogForm.get('trExcerpt')?.invalid"></textarea>
+                @if (blogForm.get('trExcerpt')?.touched && blogForm.get('trExcerpt')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('trExcerpt') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="trContent" class="form-label text-sm sm:text-base">İçerik (Türkçe) <span class="text-red-500">*</span></label>
+                <textarea id="trContent" formControlName="trContent" rows="8" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('trContent')?.touched && blogForm.get('trContent')?.invalid"></textarea>
+                @if (blogForm.get('trContent')?.touched && blogForm.get('trContent')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('trContent') | translate }}</p>
+                }
+              </div>
+            </div>
+          }
+
+          @if (activeLanguage() === 'en') {
+            <div class="space-y-3 sm:space-y-4">
+              <div class="form-group">
+                <label for="enTitle" class="form-label text-sm sm:text-base">Title (English) <span class="text-red-500">*</span></label>
+                <input id="enTitle" type="text" formControlName="enTitle" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('enTitle')?.touched && blogForm.get('enTitle')?.invalid" />
+                @if (blogForm.get('enTitle')?.touched && blogForm.get('enTitle')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('enTitle') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="enSlug" class="form-label text-sm sm:text-base">Slug (English) <span class="text-red-500">*</span></label>
+                <input id="enSlug" type="text" formControlName="enSlug" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('enSlug')?.touched && blogForm.get('enSlug')?.invalid" placeholder="post-url" />
+                @if (blogForm.get('enSlug')?.touched && blogForm.get('enSlug')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('enSlug') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="enExcerpt" class="form-label text-sm sm:text-base">Excerpt (English) <span class="text-red-500">*</span></label>
+                <textarea id="enExcerpt" formControlName="enExcerpt" rows="2" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('enExcerpt')?.touched && blogForm.get('enExcerpt')?.invalid"></textarea>
+                @if (blogForm.get('enExcerpt')?.touched && blogForm.get('enExcerpt')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('enExcerpt') | translate }}</p>
+                }
+              </div>
+              <div class="form-group">
+                <label for="enContent" class="form-label text-sm sm:text-base">Content (English) <span class="text-red-500">*</span></label>
+                <textarea id="enContent" formControlName="enContent" rows="8" class="form-input text-sm sm:text-base" [class.form-input--error]="blogForm.get('enContent')?.touched && blogForm.get('enContent')?.invalid"></textarea>
+                @if (blogForm.get('enContent')?.touched && blogForm.get('enContent')?.errors) {
+                  <p class="text-red-600 dark:text-red-400 text-xs sm:text-sm mt-1">{{ getFieldError('enContent') | translate }}</p>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- Common fields -->
+          <div class="border-t border-gray-200 dark:border-gray-700 pt-3 sm:pt-4 mt-4 sm:mt-6">
+            <h4 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">Ortak Bilgiler</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div class="form-group">
+                <label for="publishedAt" class="form-label">Yayın Tarihi</label>
+                <input id="publishedAt" type="date" formControlName="publishedAt" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label for="featuredImageUrl" class="form-label">Öne Çıkan Görsel URL</label>
+                <input id="featuredImageUrl" type="url" formControlName="featuredImageUrl" class="form-input" placeholder="https://..." />
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <label class="form-label">Durum</label>
+              <div class="flex items-center gap-3 mt-2">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" formControlName="isPublished" class="w-4 h-4 text-primary-600 rounded focus:ring-primary-500" />
+                  <span class="text-gray-700 dark:text-gray-300">Yayınlandı</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-end pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
+            <button type="button" (click)="onFormClose()" class="btn btn--outline w-full sm:w-auto text-sm sm:text-base order-2 sm:order-1" [disabled]="submitting()">
+              {{ "common.cancel" | translate }}
+            </button>
+            <button type="submit" class="btn btn--primary w-full sm:w-auto text-sm sm:text-base order-1 sm:order-2" [disabled]="submitting()">
+              @if (submitting()) {
+                <span>{{ "common.saving" | translate }}...</span>
+              } @else {
+                {{ "common.update" | translate }}
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
 </div>

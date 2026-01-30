@@ -8,6 +8,7 @@ import { ThemeService } from '../../../core/services/theme.service';
   imports: [CommonModule],
   template: `
     <button
+      data-testid="theme-toggle"
       (click)="toggleTheme()"
       class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
       [attr.aria-label]="(themeService.currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode')"

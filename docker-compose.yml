@@ -25,7 +25,6 @@ services:
     container_name: portfolio-api
     ports:
       - "5000:80"
-      - "5001:443"
     depends_on:
       postgres:
         condition: service_healthy
@@ -33,9 +32,24 @@ services:
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=portfoliodb;Username=postgres;Password=postgres;"
       ASPNETCORE_ENVIRONMENT: "Development"
       ASPNETCORE_URLS: "http://+:80"
-    volumes:
-      - ./backend/src/Portfolio.Api:/app
+      # JWT, Smtp, Turnstile: appsettings.json placeholder veya buradan override
+      JwtSettings__SecretKey: "DockerDevSecretKey-Min32CharacterRequired!!"
+      JwtSettings__Issuer: "PortfolioApi"
+      JwtSettings__Audience: "PortfolioClient"
     restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        API_URL: "http://localhost:5000/api"
+        TURNSTILE_KEY: ""
+    container_name: portfolio-frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:

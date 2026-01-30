@@ -1,0 +1,93 @@
+<div class="min-h-screen bg-gray-50 dark:bg-slate-900">
+  <!-- Admin Header -->
+  <header class="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 sticky top-0 z-30">
+    <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 min-w-0 flex-1">
+          <!-- Hamburger: sadece mobilde -->
+          <button
+            type="button"
+            (click)="toggleMenu()"
+            class="md:hidden flex-shrink-0 p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            [attr.aria-expanded]="menuOpen()"
+            aria-label="Menüyü aç/kapat">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              @if (menuOpen()) {
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              } @else {
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              }
+            </svg>
+          </button>
+          <h1 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white truncate min-w-0">
+            {{ 'nav.admin' | translate }}
+          </h1>
+        </div>
+        <a routerLink="/" class="btn btn--ghost btn--sm flex-shrink-0 text-sm whitespace-nowrap">
+          {{ 'nav.home' | translate }}
+        </a>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation: md ve üzeri -->
+    <nav class="hidden md:block border-t border-gray-100 dark:border-slate-700/50">
+      <div class="container mx-auto px-3 sm:px-4">
+        <div class="flex flex-wrap gap-1 -mb-px overflow-x-auto">
+          <a
+            routerLink="/admin"
+            routerLinkActive="admin-nav-active"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="admin-nav-link">Dashboard</a>
+          <a routerLink="/admin/projects" routerLinkActive="admin-nav-active" class="admin-nav-link">{{ 'nav.projects' | translate }}</a>
+          <a routerLink="/admin/blog" routerLinkActive="admin-nav-active" class="admin-nav-link">{{ 'nav.blog' | translate }}</a>
+          <a routerLink="/admin/messages" routerLinkActive="admin-nav-active" class="admin-nav-link">Messages</a>
+          <a routerLink="/admin/skills" routerLinkActive="admin-nav-active" class="admin-nav-link">{{ 'nav.skills' | translate }}</a>
+          <a routerLink="/admin/education" routerLinkActive="admin-nav-active" class="admin-nav-link">{{ 'nav.education' | translate }}</a>
+          <a routerLink="/admin/experience" routerLinkActive="admin-nav-active" class="admin-nav-link">{{ 'nav.experience' | translate }}</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  @if (menuOpen()) {
+    <div
+      class="fixed inset-0 bg-black/50 z-40 md:hidden"
+      (click)="closeMenu()"
+      [attr.aria-hidden]="!menuOpen()"></div>
+  }
+
+  <!-- Mobile Navigation: drawer -->
+  <nav
+    class="fixed top-0 left-0 bottom-0 w-72 max-w-[85vw] bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 z-50 md:hidden transform transition-transform duration-200 ease-out overflow-y-auto"
+    [class.translate-x-0]="menuOpen()"
+    [class.-translate-x-full]="!menuOpen()"
+    [attr.aria-hidden]="!menuOpen()">
+    <div class="sticky top-0 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 px-4 py-3 flex items-center justify-between">
+      <span class="font-semibold text-gray-900 dark:text-white">{{ 'nav.admin' | translate }}</span>
+      <button
+        type="button"
+        (click)="closeMenu()"
+        class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-slate-700"
+        aria-label="Menüyü kapat">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="py-2">
+      <a routerLink="/admin" routerLinkActive="admin-drawer-active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" class="admin-drawer-link">Dashboard</a>
+      <a routerLink="/admin/projects" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">{{ 'nav.projects' | translate }}</a>
+      <a routerLink="/admin/blog" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">{{ 'nav.blog' | translate }}</a>
+      <a routerLink="/admin/messages" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">Messages</a>
+      <a routerLink="/admin/skills" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">{{ 'nav.skills' | translate }}</a>
+      <a routerLink="/admin/education" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">{{ 'nav.education' | translate }}</a>
+      <a routerLink="/admin/experience" routerLinkActive="admin-drawer-active" (click)="closeMenu()" class="admin-drawer-link">{{ 'nav.experience' | translate }}</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8">
+    <router-outlet></router-outlet>
+  </main>
+</div>

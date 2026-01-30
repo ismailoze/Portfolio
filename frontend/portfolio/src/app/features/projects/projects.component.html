@@ -47,17 +47,19 @@
           @for (project of filteredProjects; track project.id) {
             <div class="project-card hover-lift" appScrollAnimation>
               @if (project.imageUrl) {
-                <img 
-                  [src]="project.imageUrl" 
+                <img
+                  [src]="project.imageUrl"
                   [alt]="getProjectTitle(project)"
                   appLazyImage
                   class="project-card__image">
+              } @else {
+                <div class="project-card__image project-card__image-placeholder" aria-hidden="true"></div>
               }
               <div class="project-card__header">
                 <h3 class="project-card__title">{{ getProjectTitle(project) }}</h3>
               </div>
               <div class="project-card__body">
-                <p class="mb-4">{{ getProjectDescription(project) }}</p>
+                <p>{{ getProjectDescription(project) }}</p>
                 @if (getProjectTechnologies(project)) {
                   <div class="project-card__tags">
                     @for (tech of getTechnologies(getProjectTechnologies(project)); track tech) {
@@ -66,25 +68,35 @@
                   </div>
                 }
               </div>
-              <div class="project-card__footer flex gap-2">
-                @if (project.liveUrl) {
-                  <a 
-                    [href]="project.liveUrl" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn--primary btn--sm flex-1">
-                    {{ 'projects.liveDemo' | translate }}
-                  </a>
-                }
-                @if (project.githubUrl) {
-                  <a 
-                    [href]="project.githubUrl" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="btn btn--outline btn--sm flex-1">
-                    {{ 'projects.viewCode' | translate }}
-                  </a>
-                }
+              <div class="project-card__footer">
+                <div class="project-card__actions">
+                  @if (project.liveUrl) {
+                    <a
+                      [href]="project.liveUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn btn--primary btn--sm flex-1">
+                      {{ 'projects.liveDemo' | translate }}
+                    </a>
+                  } @else {
+                    <span class="btn btn--primary btn--sm flex-1 project-card__btn-placeholder" aria-hidden="true">
+                      {{ 'projects.liveDemo' | translate }}
+                    </span>
+                  }
+                  @if (project.githubUrl) {
+                    <a
+                      [href]="project.githubUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="btn btn--outline btn--sm flex-1">
+                      {{ 'projects.viewCode' | translate }}
+                    </a>
+                  } @else {
+                    <span class="btn btn--outline btn--sm flex-1 project-card__btn-placeholder" aria-hidden="true">
+                      {{ 'projects.viewCode' | translate }}
+                    </span>
+                  }
+                </div>
               </div>
             </div>
           }

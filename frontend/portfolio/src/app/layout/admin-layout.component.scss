@@ -1,0 +1,20 @@
+// Desktop nav link
+.admin-nav-link {
+  @apply px-3 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-400 border-b-2 border-transparent
+    hover:text-primary-600 dark:hover:text-primary-400 hover:border-primary-600 dark:hover:border-primary-400
+    transition-colors whitespace-nowrap;
+}
+
+.admin-nav-active {
+  @apply text-primary-600 dark:text-primary-400 border-primary-600 dark:border-primary-400;
+}
+
+// Mobile drawer link
+.admin-drawer-link {
+  @apply block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700
+    hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+}
+
+.admin-drawer-active {
+  @apply bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium;
+}

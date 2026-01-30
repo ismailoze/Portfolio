@@ -8,6 +8,9 @@
     "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
     "lint": "ng lint"
   },
   "prettier": {
@@ -41,7 +44,9 @@
     "@angular/build": "^20.1.1",
     "@angular/cli": "^20.1.1",
     "@angular/compiler-cli": "^20.1.0",
+    "@playwright/test": "^1.58.0",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^25.1.0",
     "autoprefixer": "^10.4.23",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",

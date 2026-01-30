@@ -9,9 +9,9 @@ using Xunit;
 namespace Portfolio.Application.Tests.Validators;
 
 /// <summary>
-/// CreateProjectDtoValidator için unit testler
+/// UpdateProjectDtoValidator için unit testler
 /// </summary>
-public class CreateProjectDtoValidatorTests
+public class UpdateProjectDtoValidatorTests
 {
     private static IStringLocalizer<SharedResource> CreateMockLocalizer()
     {
@@ -20,16 +20,16 @@ public class CreateProjectDtoValidatorTests
         return mock.Object;
     }
 
-    private static CreateProjectDto ValidDto(
+    private static UpdateProjectDto ValidDto(
         string? githubUrl = "https://github.com/test",
         string? liveUrl = "https://test.com",
-        string? imageUrl = "https://test.com/image.jpg",
+        string? imageUrl = null,
         bool isPublished = true,
         int displayOrder = 1) =>
-        new CreateProjectDto(
+        new UpdateProjectDto(
             Translations: new[]
             {
-                new CreateProjectTranslationDto("en", "Test Project", "This is a test project description", "Angular, .NET")
+                new UpdateProjectTranslationDto("en", "Test Project", "Description", "Angular")
             },
             GitHubUrl: githubUrl,
             LiveUrl: liveUrl,
@@ -41,24 +41,20 @@ public class CreateProjectDtoValidatorTests
     [Fact]
     public void Validate_ValidInput_ShouldPass()
     {
-        // Arrange
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
         var dto = ValidDto();
 
-        // Act
         var result = validator.Validate(dto);
 
-        // Assert
         result.IsValid.Should().BeTrue();
     }
 
     [Fact]
     public void Validate_EmptyTranslations_ShouldFail()
     {
-        // Arrange
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
-        var dto = new CreateProjectDto(
-            Translations: Array.Empty<CreateProjectTranslationDto>(),
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
+        var dto = new UpdateProjectDto(
+            Translations: Array.Empty<UpdateProjectTranslationDto>(),
             GitHubUrl: null,
             LiveUrl: null,
             ImageUrl: null,
@@ -66,75 +62,20 @@ public class CreateProjectDtoValidatorTests
             DisplayOrder: 0
         );
 
-        // Act
         var result = validator.Validate(dto);
 
-        // Assert
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.PropertyName == "Translations");
     }
 
     [Fact]
-    public void Validate_EmptyTitleInTranslation_ShouldFail()
-    {
-        // Arrange
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
-        var dto = new CreateProjectDto(
-            Translations: new[]
-            {
-                new CreateProjectTranslationDto("en", "", "Description", null)
-            },
-            GitHubUrl: null,
-            LiveUrl: null,
-            ImageUrl: null,
-            IsPublished: false,
-            DisplayOrder: 0
-        );
-
-        // Act
-        var result = validator.Validate(dto);
-
-        // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName.Contains("Title"));
-    }
-
-    [Fact]
-    public void Validate_EmptyDescriptionInTranslation_ShouldFail()
-    {
-        // Arrange
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
-        var dto = new CreateProjectDto(
-            Translations: new[]
-            {
-                new CreateProjectTranslationDto("en", "Title", "", null)
-            },
-            GitHubUrl: null,
-            LiveUrl: null,
-            ImageUrl: null,
-            IsPublished: false,
-            DisplayOrder: 0
-        );
-
-        // Act
-        var result = validator.Validate(dto);
-
-        // Assert
-        result.IsValid.Should().BeFalse();
-        result.Errors.Should().Contain(e => e.PropertyName.Contains("Description"));
-    }
-
-    [Fact]
     public void Validate_InvalidGitHubUrl_ShouldFail()
     {
-        // Arrange
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
         var dto = ValidDto(githubUrl: "not-a-valid-url");
 
-        // Act
         var result = validator.Validate(dto);
 
-        // Assert
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.PropertyName == "GitHubUrl");
     }
@@ -142,8 +83,8 @@ public class CreateProjectDtoValidatorTests
     [Fact]
     public void Validate_InvalidLiveUrl_ShouldFail()
     {
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
-        var dto = ValidDto(liveUrl: "not-a-valid-url");
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
+        var dto = ValidDto(liveUrl: "invalid");
 
         var result = validator.Validate(dto);
 
@@ -154,8 +95,8 @@ public class CreateProjectDtoValidatorTests
     [Fact]
     public void Validate_InvalidImageUrl_ShouldFail()
     {
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
-        var dto = ValidDto(imageUrl: "invalid");
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
+        var dto = ValidDto(imageUrl: "not-a-url");
 
         var result = validator.Validate(dto);
 
@@ -166,12 +107,23 @@ public class CreateProjectDtoValidatorTests
     [Fact]
     public void Validate_NegativeDisplayOrder_ShouldFail()
     {
-        var validator = new CreateProjectDtoValidator(CreateMockLocalizer());
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
         var dto = ValidDto(displayOrder: -1);
 
         var result = validator.Validate(dto);
 
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.PropertyName == "DisplayOrder");
+    }
+
+    [Fact]
+    public void Validate_NullOptionalUrls_ShouldPass()
+    {
+        var validator = new UpdateProjectDtoValidator(CreateMockLocalizer());
+        var dto = ValidDto(githubUrl: null, liveUrl: null, imageUrl: null);
+
+        var result = validator.Validate(dto);
+
+        result.IsValid.Should().BeTrue();
     }
 }

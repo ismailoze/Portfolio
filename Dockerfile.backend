@@ -9,13 +9,11 @@ COPY ["backend/src/Portfolio.Application/Portfolio.Application.csproj", "backend
 COPY ["backend/src/Portfolio.Domain/Portfolio.Domain.csproj", "backend/src/Portfolio.Domain/"]
 COPY ["backend/src/Portfolio.Infrastructure/Portfolio.Infrastructure.csproj", "backend/src/Portfolio.Infrastructure/"]
 
-# Restore dependencies
-RUN dotnet restore "backend/Portfolio.sln"
-
-# Copy everything else and build
+# Copy everything else and build (tests hariç .dockerignore ile; sadece Api build)
 COPY . .
 WORKDIR /src/backend
-RUN dotnet build "Portfolio.sln" -c Release -o /app/build
+RUN dotnet restore "src/Portfolio.Api/Portfolio.Api.csproj" && \
+    dotnet build "src/Portfolio.Api/Portfolio.Api.csproj" -c Release -o /app/build
 
 # Publish stage
 FROM build AS publish

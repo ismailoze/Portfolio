@@ -44,15 +44,26 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
-## Running end-to-end tests
+## Running end-to-end tests (Playwright)
 
-For end-to-end (e2e) testing, run:
+E2E testleri [Playwright](https://playwright.dev) ile çalıştırılır. İlk kez kullanıyorsanız tarayıcıları yükleyin:
 
 ```bash
-ng e2e
+npx playwright install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Testleri çalıştırın (uygulama otomatik başlatılır):
+
+```bash
+npm run test:e2e
+```
+
+Diğer komutlar:
+
+- `npm run test:e2e:ui` – Playwright UI ile interaktif çalıştırma
+- `npm run test:e2e:headed` – Tarayıcı penceresi açık çalıştırma
+
+Testler `e2e/` klasöründe; navigasyon, login, admin guard ve contact sayfaları kapsanır.
 
 ## Additional Resources
 

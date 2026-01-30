@@ -49,37 +49,104 @@
   }
 }
 
-// Project card specific
+// Project card specific – standart yerleşim ve yükseklik
 .project-card {
   @extend .card;
   overflow: hidden;
   position: relative;
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+
   &__image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+    flex-shrink: 0;
     transition: transform $transition-slow;
   }
-  
-  &:hover &__image {
+
+  &__image-placeholder {
+    background-color: var(--bg-secondary);
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    min-height: 200px;
+  }
+
+  &:hover &__image:not(.project-card__image-placeholder) {
     transform: scale(1.05);
   }
-  
+
+  &__header {
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  &__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  &__body p {
+    margin: 0 0 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
   &__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
-  
+
   &__tag {
     padding: 0.25rem 0.75rem;
     background-color: var(--bg-secondary);
     border-radius: 1rem;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--text-secondary);
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    min-height: 2.75rem;
+    flex-shrink: 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  &__btn-placeholder {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
   }
 }

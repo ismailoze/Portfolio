@@ -12,8 +12,8 @@ using Portfolio.Infrastructure.Data;
 namespace Portfolio.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260113200816_AddTranslationTables")]
-    partial class AddTranslationTables
+    [Migration("20260130151111_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,10 +54,7 @@ namespace Portfolio.Infrastructure.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -73,16 +70,13 @@ namespace Portfolio.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable((string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -98,7 +92,7 @@ namespace Portfolio.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable((string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -120,7 +114,7 @@ namespace Portfolio.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable((string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -154,7 +148,7 @@ namespace Portfolio.Infrastructure.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable((string)null);
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.BlogPost", b =>
@@ -163,16 +157,8 @@ namespace Portfolio.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Excerpt")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("FeaturedImageUrl")
                         .HasColumnType("text");
@@ -183,38 +169,12 @@ namespace Portfolio.Infrastructure.Migrations
                     b.Property<DateTime?>("PublishedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Slug")
-                        .IsUnique();
-
                     b.ToTable("BlogPosts");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.BlogPostTag", b =>
-                {
-                    b.Property<Guid>("BlogPostId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("BlogPostId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("BlogPostTags");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.BlogPostTranslation", b =>
@@ -355,10 +315,6 @@ namespace Portfolio.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("integer");
 
@@ -374,13 +330,6 @@ namespace Portfolio.Infrastructure.Migrations
                     b.Property<string>("LiveUrl")
                         .HasColumnType("text");
 
-                    b.Property<string>("Technologies")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -389,21 +338,6 @@ namespace Portfolio.Infrastructure.Migrations
                     b.HasIndex("IsPublished", "DisplayOrder");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.ProjectSkill", b =>
-                {
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SkillId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ProjectId", "SkillId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("ProjectSkills");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.ProjectTranslation", b =>
@@ -478,34 +412,6 @@ namespace Portfolio.Infrastructure.Migrations
                     b.HasIndex("Category");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Slug")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Slug")
-                        .IsUnique();
-
-                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.WorkExperience", b =>
@@ -676,25 +582,6 @@ namespace Portfolio.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Portfolio.Domain.Entities.BlogPostTag", b =>
-                {
-                    b.HasOne("Portfolio.Domain.Entities.BlogPost", "BlogPost")
-                        .WithMany("BlogPostTags")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Portfolio.Domain.Entities.Tag", "Tag")
-                        .WithMany("BlogPostTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogPost");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("Portfolio.Domain.Entities.BlogPostTranslation", b =>
                 {
                     b.HasOne("Portfolio.Domain.Entities.BlogPost", "BlogPost")
@@ -704,25 +591,6 @@ namespace Portfolio.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("BlogPost");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.ProjectSkill", b =>
-                {
-                    b.HasOne("Portfolio.Domain.Entities.Project", "Project")
-                        .WithMany("ProjectSkills")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Portfolio.Domain.Entities.Skill", "Skill")
-                        .WithMany("ProjectSkills")
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.ProjectTranslation", b =>
@@ -738,26 +606,12 @@ namespace Portfolio.Infrastructure.Migrations
 
             modelBuilder.Entity("Portfolio.Domain.Entities.BlogPost", b =>
                 {
-                    b.Navigation("BlogPostTags");
-
                     b.Navigation("Translations");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Entities.Project", b =>
                 {
-                    b.Navigation("ProjectSkills");
-
                     b.Navigation("Translations");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.Skill", b =>
-                {
-                    b.Navigation("ProjectSkills");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Entities.Tag", b =>
-                {
-                    b.Navigation("BlogPostTags");
                 });
 #pragma warning restore 612, 618
         }

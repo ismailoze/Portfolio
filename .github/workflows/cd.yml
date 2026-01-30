@@ -5,11 +5,24 @@ on:
     branches: [ main ]
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Deploy target'
+        required: true
+        default: 'both'
+        type: choice
+        options:
+          - backend
+          - frontend
+          - both
 
 jobs:
   deploy-backend:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '[deploy-backend]') || startsWith(github.ref, 'refs/tags/')
+    if: >-
+      (github.event_name == 'workflow_dispatch' && (inputs.target == 'backend' || inputs.target == 'both'))
+      || (github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-backend]') || startsWith(github.ref, 'refs/tags/')))
     
     steps:
     - name: Checkout code
@@ -48,7 +61,9 @@ jobs:
 
   deploy-frontend:
     runs-on: ubuntu-latest
-    if: contains(github.event.head_commit.message, '[deploy-frontend]') || startsWith(github.ref, 'refs/tags/')
+    if: >-
+      (github.event_name == 'workflow_dispatch' && (inputs.target == 'frontend' || inputs.target == 'both'))
+      || (github.event_name == 'push' && (contains(github.event.head_commit.message, '[deploy-frontend]') || startsWith(github.ref, 'refs/tags/')))
     
     steps:
     - name: Checkout code

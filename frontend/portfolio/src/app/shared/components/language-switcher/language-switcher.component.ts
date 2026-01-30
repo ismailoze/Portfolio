@@ -9,6 +9,7 @@ import { I18nService } from '../../../core/services/i18n.service';
   template: `
     <div class="relative">
       <button
+        data-testid="language-switcher"
         (click)="toggleLanguage()"
         class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors text-sm font-medium text-gray-700 dark:text-gray-300"
         type="button">

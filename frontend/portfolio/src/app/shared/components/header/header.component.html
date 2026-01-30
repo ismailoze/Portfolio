@@ -10,7 +10,7 @@
   <nav class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <!-- Logo -->
-      <a routerLink="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
+      <a data-testid="nav-home" routerLink="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
         @if (ownerName()) {
           {{ ownerName() }}
         } @else {
@@ -27,42 +27,49 @@
           {{ 'nav.home' | translate }}
         </a>
         <a 
+          data-testid="nav-about"
           routerLink="/about" 
           [class.active]="isActiveRoute('/about')"
           class="nav-link">
           {{ 'nav.about' | translate }}
         </a>
         <a 
+          data-testid="nav-projects"
           routerLink="/projects" 
           [class.active]="isActiveRoute('/projects')"
           class="nav-link">
           {{ 'nav.projects' | translate }}
         </a>
         <a 
+          data-testid="nav-blog"
           routerLink="/blog" 
           [class.active]="isActiveRoute('/blog')"
           class="nav-link">
           {{ 'nav.blog' | translate }}
         </a>
         <a 
+          data-testid="nav-experience"
           routerLink="/experience" 
           [class.active]="isActiveRoute('/experience')"
           class="nav-link">
           {{ 'nav.experience' | translate }}
         </a>
         <a 
+          data-testid="nav-education"
           routerLink="/education" 
           [class.active]="isActiveRoute('/education')"
           class="nav-link">
           {{ 'nav.education' | translate }}
         </a>
         <a 
+          data-testid="nav-skills"
           routerLink="/skills" 
           [class.active]="isActiveRoute('/skills')"
           class="nav-link">
           {{ 'nav.skills' | translate }}
         </a>
         <a 
+          data-testid="nav-contact"
           routerLink="/contact" 
           [class.active]="isActiveRoute('/contact')"
           class="nav-link">
@@ -92,6 +99,7 @@
           </button>
         } @else {
           <a 
+            data-testid="nav-login"
             routerLink="/login"
             class="btn btn--primary btn--sm hidden md:inline-flex">
             {{ 'auth.login' | translate }}
