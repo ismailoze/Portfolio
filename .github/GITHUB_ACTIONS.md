@@ -18,7 +18,7 @@ Bu projede **Backend CI**, **Frontend CI** ve **Deploy** işleri GitHub Actions 
 
 **Ne zaman çalışır:**
 - `main` veya `develop` branch’ine **push** veya **pull request**.
-- Sadece `backend/**` veya ` .github/workflows/ci-backend.yml` değiştiğinde.
+- Her push/PR'da tetiklenir (path filtresi yok).
 
 **Adımlar:**
 1. PostgreSQL 16 service container.
@@ -37,13 +37,13 @@ Bu projede **Backend CI**, **Frontend CI** ve **Deploy** işleri GitHub Actions 
 
 **Ne zaman çalışır:**
 - `main` veya `develop` branch’ine **push** veya **pull request**.
-- Sadece `frontend/**` veya `.github/workflows/ci-frontend.yml` değiştiğinde.
+- Her push/PR'da tetiklenir (path filtresi yok).
 
 **Adımlar:**
 1. Node 22, `npm ci` (cache: `frontend/portfolio/package-lock.json`).
-2. `npm run lint` (hata olsa da devam: `continue-on-error`).
+2. `npm run lint`.
 3. `npm run build` (production).
-4. `npm test -- --watch=false --browsers=ChromeHeadless` (hata olsa da devam: `continue-on-error`).
+4. `npm test -- --watch=false --browsers=ChromeHeadless`.
 
 **Gerekli secret:** Yok.
 
@@ -177,7 +177,7 @@ README’ye ekleyebileceğiniz örnekler (`OWNER` ve `REPO`’yu kendi reponuzla
 | Belirti | Olası neden | Çözüm |
 |--------|--------------|-------|
 | Backend CI: test bağlantı hatası | PostgreSQL service başlamadan test koşuyor | `services.postgres.options` health check’e bırakıldı; bazen 1–2 dakika sürebilir. |
-| Frontend CI: lint/test fail | Kurallar veya testler kırık | `continue-on-error: true` ile job yine de yeşil; yerde `npm run lint` ve `npm test` ile düzeltin. |
+| Frontend CI: lint/test fail | Kurallar veya testler kırık | Pipeline kırmızı olur; yerde `npm run lint` ve `npm test` ile düzeltin. |
 | Deploy: Docker build fail | Context veya yol hatası | `docker build -f Dockerfile.backend .` repo kökünden çalıştığından emin olun; `Actions` log’unda `working-directory`’i kontrol edin. |
 | `inputs` / `workflow_dispatch` hatası | Eski runner / sözdizimi | `actions/checkout@v4`, `setup-dotnet@v4`, `setup-node@v4` kullanıldığını ve `workflow_dispatch` blokunun doğru girintide olduğunu kontrol edin. |
 

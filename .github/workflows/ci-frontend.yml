@@ -3,14 +3,8 @@ name: Frontend CI
 on:
   push:
     branches: [ main, develop ]
-    paths:
-      - 'frontend/**'
-      - '.github/workflows/ci-frontend.yml'
   pull_request:
     branches: [ main, develop ]
-    paths:
-      - 'frontend/**'
-      - '.github/workflows/ci-frontend.yml'
 
 jobs:
   build-and-test:
@@ -30,12 +24,10 @@ jobs:
     - name: Install dependencies
       run: npm ci
       working-directory: ./frontend/portfolio
-      continue-on-error: true
     
     - name: Lint
       run: npm run lint
       working-directory: ./frontend/portfolio
-      continue-on-error: true
     
     - name: Build
       run: npm run build
@@ -46,4 +38,3 @@ jobs:
     - name: Run tests
       run: npm test -- --watch=false --browsers=ChromeHeadless
       working-directory: ./frontend/portfolio
-      continue-on-error: true

@@ -1,5 +1,8 @@
 # Portfolio Application
 
+[![Backend CI](https://github.com/ismailoze/Portfolio/actions/workflows/ci-backend.yml/badge.svg)](https://github.com/ismailoze/Portfolio/actions/workflows/ci-backend.yml)
+[![Frontend CI](https://github.com/ismailoze/Portfolio/actions/workflows/ci-frontend.yml/badge.svg)](https://github.com/ismailoze/Portfolio/actions/workflows/ci-frontend.yml)
+
 Modern portfolio uygulaması - ASP.NET Core Web API (.NET 9) backend ve Angular v20 frontend.
 
 ## 🏗️ Mimari
@@ -153,6 +156,41 @@ docker compose up -d
 ```
 
 Arka planda çalıştırmak: `docker compose up -d --build`
+
+### Podman ile Çalıştırma
+
+Mevcut `docker-compose.yml` Podman ile uyumludur. **Podman 4.1+** (yerleşik `podman compose` desteği) gereklidir.
+
+**CMD veya PowerShell (proje kökünden) — önerilen (Execution Policy sorunu yok):**
+
+```cmd
+scripts\podman-up.cmd
+```
+
+Durdurmak için:
+
+```cmd
+scripts\podman-down.cmd
+```
+
+**PowerShell betikleri** (sistemde script çalıştırmaya izin veriliyorsa):
+
+```powershell
+.\scripts\podman-up.ps1
+.\scripts\podman-down.ps1
+```
+
+PowerShell'de "running scripts is disabled" hatası alırsanız, politikayı değiştirmeden tek seferlik çalıştırma:  
+`powershell -ExecutionPolicy Bypass -File .\scripts\podman-up.ps1`
+
+**Manuel komutlar:**
+
+```powershell
+podman compose -f docker-compose.yml up -d --build
+podman compose -f docker-compose.yml down
+```
+
+Erişim adresleri Docker ile aynıdır (Frontend: 4200, Backend: 5000, Swagger: 5000/swagger, PostgreSQL: 5432).
 
 ## 🔒 Güvenlik
 
