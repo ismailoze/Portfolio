@@ -26,7 +26,7 @@ export class CustomTranslateLoader implements TranslateLoader {
     private suffix = '.json'
   ) {}
 
-  getTranslation(lang: string): Observable<any> {
+  getTranslation(lang: string): Observable<Record<string, unknown>> {
     return this.http.get(`${this.prefix}${lang}${this.suffix}`).pipe(
       map((response) => response)
     );

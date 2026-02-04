@@ -135,10 +135,6 @@ export class ProjectsManagementComponent implements OnInit {
 
   onSubmit(): void {
     // Aktif dilin formunu kontrol et
-    const activeLang = this.activeLanguage();
-    const titleField = activeLang === 'tr' ? 'trTitle' : 'enTitle';
-    const descField = activeLang === 'tr' ? 'trDescription' : 'enDescription';
-    
     // Her iki dil için de validasyon yap
     const trTitleControl = this.projectForm.get('trTitle');
     const trDescControl = this.projectForm.get('trDescription');

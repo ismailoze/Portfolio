@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, signal, inject, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,7 +30,7 @@ declare global {
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ContactComponent implements AfterViewInit, OnDestroy {
   private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
 
@@ -51,10 +51,6 @@ export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
       message: ['', [Validators.required, Validators.minLength(10)]],
       turnstileToken: ['']
     });
-  }
-
-  ngOnInit(): void {
-    // Component initialization
   }
 
   ngAfterViewInit(): void {

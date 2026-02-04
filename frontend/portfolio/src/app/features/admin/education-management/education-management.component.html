@@ -69,8 +69,8 @@
   }
 
   @if (showForm()) {
-    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" (click)="closeForm()">
-      <div class="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" role="button" tabindex="0" (click)="closeForm()" (keydown.enter)="closeForm()" (keydown.space)="closeForm()">
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" role="button" tabindex="0" (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-xl font-bold text-gray-900 dark:text-white">
             {{ (editingEducation() ? 'common.edit' : 'common.create') | translate }} {{ 'nav.education' | translate }}
@@ -79,38 +79,38 @@
         </div>
         <form [formGroup]="educationForm" (ngSubmit)="onSubmit()" class="space-y-4">
           <div class="form-group">
-            <label class="form-label">{{ 'education.institution' | translate }} *</label>
-            <input formControlName="institution" class="form-input" type="text" />
+            <label for="educationInstitution" class="form-label">{{ 'education.institution' | translate }} *</label>
+            <input id="educationInstitution" formControlName="institution" class="form-input" type="text" />
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'education.degree' | translate }} *</label>
-            <input formControlName="degree" class="form-input" type="text" />
+            <label for="educationDegree" class="form-label">{{ 'education.degree' | translate }} *</label>
+            <input id="educationDegree" formControlName="degree" class="form-input" type="text" />
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'education.field' | translate }} *</label>
-            <input formControlName="field" class="form-input" type="text" />
+            <label for="educationField" class="form-label">{{ 'education.field' | translate }} *</label>
+            <input id="educationField" formControlName="field" class="form-input" type="text" />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="form-group">
-              <label class="form-label">{{ 'education.startDate' | translate }} *</label>
-              <input formControlName="startDate" class="form-input" type="date" />
+              <label for="educationStartDate" class="form-label">{{ 'education.startDate' | translate }} *</label>
+              <input id="educationStartDate" formControlName="startDate" class="form-input" type="date" />
             </div>
             <div class="form-group">
-              <label class="form-label">{{ 'education.endDate' | translate }}</label>
-              <input formControlName="endDate" class="form-input" type="date" />
+              <label for="educationEndDate" class="form-label">{{ 'education.endDate' | translate }}</label>
+              <input id="educationEndDate" formControlName="endDate" class="form-input" type="date" />
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'education.description' | translate }}</label>
-            <textarea formControlName="description" class="form-input" rows="3"></textarea>
+            <label for="educationDescription" class="form-label">{{ 'education.description' | translate }}</label>
+            <textarea id="educationDescription" formControlName="description" class="form-input" rows="3"></textarea>
           </div>
           <div class="form-group flex items-center gap-2">
             <input formControlName="isCompleted" type="checkbox" id="isCompleted" />
             <label for="isCompleted">{{ 'education.isCompleted' | translate }}</label>
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'education.displayOrder' | translate }}</label>
-            <input formControlName="displayOrder" class="form-input" type="number" min="0" />
+            <label for="educationDisplayOrder" class="form-label">{{ 'education.displayOrder' | translate }}</label>
+            <input id="educationDisplayOrder" formControlName="displayOrder" class="form-input" type="number" min="0" />
           </div>
           <div class="flex gap-2 justify-end pt-4 border-t border-gray-200 dark:border-slate-700">
             <button type="button" (click)="closeForm()" class="btn btn--outline">{{ 'common.cancel' | translate }}</button>

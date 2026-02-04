@@ -1,4 +1,4 @@
-import { Injectable, signal, effect } from '@angular/core';
+import { Injectable, inject, signal, effect } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 export type Language = 'tr' | 'en';
@@ -7,10 +7,11 @@ export type Language = 'tr' | 'en';
   providedIn: 'root'
 })
 export class I18nService {
+  private translate = inject(TranslateService);
   private languageSignal = signal<Language>(this.getInitialLanguage());
   currentLanguage = this.languageSignal.asReadonly();
 
-  constructor(private translate: TranslateService) {
+  constructor() {
     // Dil değişikliklerini dinle
     effect(() => {
       const lang = this.languageSignal();

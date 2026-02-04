@@ -13,7 +13,7 @@ export class ApiService {
   /**
    * GET request
    */
-  get<T>(endpoint: string, params?: Record<string, any>): Observable<T> {
+  get<T>(endpoint: string, params?: Record<string, string | number | boolean>): Observable<T> {
     let httpParams = new HttpParams();
     if (params) {
       Object.keys(params).forEach(key => {
@@ -28,14 +28,14 @@ export class ApiService {
   /**
    * POST request
    */
-  post<T>(endpoint: string, data: any): Observable<T> {
+  post<T>(endpoint: string, data: unknown): Observable<T> {
     return this.http.post<T>(`${this.baseUrl}/${endpoint}`, data);
   }
 
   /**
    * PUT request
    */
-  put<T>(endpoint: string, data: any): Observable<T> {
+  put<T>(endpoint: string, data: unknown): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, data);
   }
 
@@ -49,7 +49,7 @@ export class ApiService {
   /**
    * PATCH request
    */
-  patch<T>(endpoint: string, data: any): Observable<T> {
+  patch<T>(endpoint: string, data: unknown): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}/${endpoint}`, data);
   }
 }

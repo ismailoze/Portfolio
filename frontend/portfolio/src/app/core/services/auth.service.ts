@@ -232,7 +232,7 @@ export class AuthService {
       // Payload'ı decode et (base64url)
       const payload = parts[1];
       // Base64URL decode (padding ekle gerekirse)
-      let base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
       const padded = base64 + '='.repeat((4 - base64.length % 4) % 4);
       const decoded = atob(padded);
       const claims = JSON.parse(decoded);

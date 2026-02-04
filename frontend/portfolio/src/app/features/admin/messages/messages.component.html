@@ -51,11 +51,15 @@
           @for (message of getFilteredMessages(); track message.id) {
             <div 
               class="card cursor-pointer transition-all duration-200 hover:shadow-lg"
+              role="button"
+              tabindex="0"
               [class.bg-primary-50]="!message.isRead"
               [class.dark:bg-primary-900/20]="!message.isRead"
               [class.border-primary-500]="selectedMessage()?.id === message.id"
               [class.border-2]="selectedMessage()?.id === message.id"
-              (click)="selectMessage(message)">
+              (click)="selectMessage(message)"
+              (keydown.enter)="selectMessage(message)"
+              (keydown.space)="selectMessage(message)">
               <div class="flex justify-between items-start gap-2 sm:gap-3">
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2 mb-1">

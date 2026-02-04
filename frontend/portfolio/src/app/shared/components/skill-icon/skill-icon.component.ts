@@ -40,9 +40,9 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class SkillIconComponent implements OnInit, OnChanges {
   @Input() iconName: string | null | undefined = null;
-  @Input() size: number = 24;
-  @Input() color: string = 'currentColor';
-  @Input() iconSet: string = 'simple-icons'; // Varsayılan: simple-icons, alternatif: logos, devicon, vb.
+  @Input() size = 24;
+  @Input() color = 'currentColor';
+  @Input() iconSet = 'simple-icons'; // Varsayılan: simple-icons, alternatif: logos, devicon, vb.
 
   iconSvg: SafeHtml | null = null;
   isLoading = signal(false);
@@ -183,16 +183,16 @@ export class SkillIconComponent implements OnInit, OnChanges {
 
   private async loadFromSimpleIcons(): Promise<void> {
     try {
-      // @ts-ignore - TypeScript tanımları eksik olabilir
-      const simpleIconsModule: any = await import('simple-icons');
-      const icons = simpleIconsModule.default || simpleIconsModule;
+      // simple-icons paketi tip tanımları eksik olabilir
+      const simpleIconsModule = await import('simple-icons');
+      const icons = (simpleIconsModule as { default?: Record<string, { svg: string; hex?: string }> }).default ?? simpleIconsModule as Record<string, { svg: string; hex?: string }>;
       
       const normalizedName = (this.iconName || '')
         .toLowerCase()
         .replace(/\s+/g, '-')
         .replace(/[^a-z0-9-]/g, '');
       
-      const icon = (icons as any)[normalizedName];
+      const icon = icons[normalizedName];
       
       if (icon && icon.svg) {
         let svg = icon.svg

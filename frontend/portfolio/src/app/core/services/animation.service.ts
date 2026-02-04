@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, fromEvent } from 'rxjs';
-import { map, filter, debounceTime } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class AnimationService {
   /**
    * Scroll event'i dinle (debounced)
    */
-  onScroll(debounceMs: number = 100): Observable<Event> {
+  onScroll(debounceMs = 100): Observable<Event> {
     return fromEvent(window, 'scroll').pipe(
       debounceTime(debounceMs)
     );
@@ -51,7 +51,7 @@ export class AnimationService {
   /**
    * Smooth scroll to element
    */
-  scrollToElement(elementId: string, offset: number = 0): void {
+  scrollToElement(elementId: string, offset = 0): void {
     const element = document.getElementById(elementId);
     if (element) {
       const elementPosition = element.getBoundingClientRect().top;

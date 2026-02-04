@@ -67,8 +67,8 @@
   }
 
   @if (showForm()) {
-    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" (click)="closeForm()">
-      <div class="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" (click)="$event.stopPropagation()">
+    <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" role="button" tabindex="0" (click)="closeForm()" (keydown.enter)="closeForm()" (keydown.space)="closeForm()">
+      <div class="bg-white dark:bg-slate-800 p-6 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto" role="button" tabindex="0" (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()" (keydown.space)="$event.stopPropagation()">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-xl font-bold text-gray-900 dark:text-white">
             {{ (editingExperience() ? 'common.edit' : 'common.create') | translate }} {{ 'nav.experience' | translate }}
@@ -77,38 +77,38 @@
         </div>
         <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()" class="space-y-4">
           <div class="form-group">
-            <label class="form-label">{{ 'experience.company' | translate }} *</label>
-            <input formControlName="company" class="form-input" type="text" />
+            <label for="experienceCompany" class="form-label">{{ 'experience.company' | translate }} *</label>
+            <input id="experienceCompany" formControlName="company" class="form-input" type="text" />
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'experience.position' | translate }} *</label>
-            <input formControlName="position" class="form-input" type="text" />
+            <label for="experiencePosition" class="form-label">{{ 'experience.position' | translate }} *</label>
+            <input id="experiencePosition" formControlName="position" class="form-input" type="text" />
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="form-group">
-              <label class="form-label">{{ 'experience.startDate' | translate }} *</label>
-              <input formControlName="startDate" class="form-input" type="date" />
+              <label for="experienceStartDate" class="form-label">{{ 'experience.startDate' | translate }} *</label>
+              <input id="experienceStartDate" formControlName="startDate" class="form-input" type="date" />
             </div>
             <div class="form-group">
-              <label class="form-label">{{ 'experience.endDate' | translate }}</label>
-              <input formControlName="endDate" class="form-input" type="date" />
+              <label for="experienceEndDate" class="form-label">{{ 'experience.endDate' | translate }}</label>
+              <input id="experienceEndDate" formControlName="endDate" class="form-input" type="date" />
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'experience.description' | translate }} *</label>
-            <textarea formControlName="description" class="form-input" rows="3"></textarea>
+            <label for="experienceDescription" class="form-label">{{ 'experience.description' | translate }} *</label>
+            <textarea id="experienceDescription" formControlName="description" class="form-input" rows="3"></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'experience.technologies' | translate }}</label>
-            <input formControlName="technologies" class="form-input" type="text" placeholder="Angular, .NET, TypeScript" />
+            <label for="experienceTechnologies" class="form-label">{{ 'experience.technologies' | translate }}</label>
+            <input id="experienceTechnologies" formControlName="technologies" class="form-input" type="text" placeholder="Angular, .NET, TypeScript" />
           </div>
           <div class="form-group flex items-center gap-2">
             <input formControlName="isCurrent" type="checkbox" id="isCurrent" />
             <label for="isCurrent">{{ 'experience.isCurrent' | translate }}</label>
           </div>
           <div class="form-group">
-            <label class="form-label">{{ 'experience.displayOrder' | translate }}</label>
-            <input formControlName="displayOrder" class="form-input" type="number" min="0" />
+            <label for="experienceDisplayOrder" class="form-label">{{ 'experience.displayOrder' | translate }}</label>
+            <input id="experienceDisplayOrder" formControlName="displayOrder" class="form-input" type="number" min="0" />
           </div>
           <div class="flex gap-2 justify-end pt-4 border-t border-gray-200 dark:border-slate-700">
             <button type="button" (click)="closeForm()" class="btn btn--outline">{{ 'common.cancel' | translate }}</button>

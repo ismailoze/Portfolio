@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, OnDestroy, inject, effect } from '@angular/core';
+import { Directive, ElementRef, OnInit, OnDestroy, inject } from '@angular/core';
 import { AnimationService } from '../../core/services/animation.service';
 
 @Directive({
