@@ -14,12 +14,12 @@ export class AdminService {
     // Backend'den gelen PascalCase response'u camelCase'e çevir
     return this.apiService.get<Record<string, number>>('admin/stats').pipe(
       map((response) => ({
-        totalProjects: response.TotalProjects || response.totalProjects || 0,
-        publishedProjects: response.PublishedProjects || response.publishedProjects || 0,
-        totalBlogPosts: response.TotalBlogPosts || response.totalBlogPosts || 0,
-        publishedBlogPosts: response.PublishedBlogPosts || response.publishedBlogPosts || 0,
-        unreadMessages: response.UnreadMessages || response.unreadMessages || 0,
-        totalMessages: response.TotalMessages || response.totalMessages || 0
+        totalProjects: response['TotalProjects'] ?? response['totalProjects'] ?? 0,
+        publishedProjects: response['PublishedProjects'] ?? response['publishedProjects'] ?? 0,
+        totalBlogPosts: response['TotalBlogPosts'] ?? response['totalBlogPosts'] ?? 0,
+        publishedBlogPosts: response['PublishedBlogPosts'] ?? response['publishedBlogPosts'] ?? 0,
+        unreadMessages: response['UnreadMessages'] ?? response['unreadMessages'] ?? 0,
+        totalMessages: response['TotalMessages'] ?? response['totalMessages'] ?? 0
       }))
     );
   }

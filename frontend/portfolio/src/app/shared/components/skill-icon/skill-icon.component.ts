@@ -185,7 +185,8 @@ export class SkillIconComponent implements OnInit, OnChanges {
     try {
       // simple-icons paketi tip tanımları eksik olabilir
       const simpleIconsModule = await import('simple-icons');
-      const icons = (simpleIconsModule as { default?: Record<string, { svg: string; hex?: string }> }).default ?? simpleIconsModule as Record<string, { svg: string; hex?: string }>;
+      const mod = simpleIconsModule as unknown as { default?: Record<string, { svg: string; hex?: string }> };
+      const icons: Record<string, { svg: string; hex?: string }> = mod.default ?? (simpleIconsModule as unknown as Record<string, { svg: string; hex?: string }>);
       
       const normalizedName = (this.iconName || '')
         .toLowerCase()

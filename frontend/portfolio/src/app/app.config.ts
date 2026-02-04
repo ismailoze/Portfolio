@@ -8,6 +8,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
   TranslateLoader,
+  TranslationObject,
   provideTranslateService
 } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
@@ -26,8 +27,8 @@ export class CustomTranslateLoader implements TranslateLoader {
     private suffix = '.json'
   ) {}
 
-  getTranslation(lang: string): Observable<Record<string, unknown>> {
-    return this.http.get(`${this.prefix}${lang}${this.suffix}`).pipe(
+  getTranslation(lang: string): Observable<TranslationObject> {
+    return this.http.get<TranslationObject>(`${this.prefix}${lang}${this.suffix}`).pipe(
       map((response) => response)
     );
   }
